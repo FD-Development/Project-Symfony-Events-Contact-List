@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.task_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.task_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.duration_from'|trans, 'event.durationFrom') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.duration_to'|trans, 'event.durationTo') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
+                {#<th>{{ 'label.category'|trans }}</th> #}
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in pagination.items %}
+                <tr>
+                    <td>{{ event.durationFrom|date("d.m.Y") }}</td>
+                    <td>{{ event.durationTo|date("d.m.Y") }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>
+                        <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
