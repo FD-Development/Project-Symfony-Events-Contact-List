@@ -7,32 +7,48 @@
 namespace App\DataFixtures;
 
 use App\Entity\Event;
-use Doctrine\Persistence\ObjectManager;
+use App\Entity\Category;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+
 /**
  * Class EventFixtures.
  */
-class EventFixtures extends AbstractBaseFixtures
+class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
      */
     public function loadData(): void
     {
-        for ($i = 0; $i < 50; ++$i) {
+        if (null === $this->manager || null === $this->faker) {
+            return;
+        }
+        $this->createMany(100, 'events', function (int $i) {
             $event = new Event();
             $event->setTitle($this->faker->sentence);
             $event->setDurationFrom(
-                 $this->faker->dateTimeBetween('-100 days', '-1 days')
+                 $this->faker->dateTimeBetween('-50 days', '-1 days')
             );
             $event->setDurationTo(
-                 $this->faker->dateTimeBetween('-100 days', '-1 days')
+                 $this->faker->dateTimeBetween('-50 days', '-1 days')
             );
+
+            $category = $this->getRandomReference('categories');
+            $event->setCategory($category);
+
             $event->setDescription($this->faker->sentence);
 
+
             $this->manager->persist($event);
-        }
+
+            return $event;
+        });
 
         $this->manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [CategoryFixtures::class];
     }
 }

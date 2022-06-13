@@ -25,6 +25,9 @@ class Event
     #[ORM\Column(type: 'text')]
     private $description;
 
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Event
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

@@ -54,10 +54,10 @@ class EventRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial event.{id, durationFrom, durationTo, title, description}'//,
-          //      'partial category.{id, title}'
+                'partial event.{id, durationFrom, durationTo, title, description}',
+                'partial category.{id, title}'
             )
-           // ->join('event.category', 'category')
+            ->join('event.category', 'category')
             ->orderBy('event.durationFrom', 'DESC');
     }
 

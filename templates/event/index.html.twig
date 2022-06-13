@@ -18,7 +18,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.duration_from'|trans, 'event.durationFrom') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.duration_to'|trans, 'event.durationTo') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
-                {#<th>{{ 'label.category'|trans }}</th> #}
+                <th>{{ 'label.category'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -28,6 +28,7 @@
                     <td>{{ event.durationFrom|date("d.m.Y") }}</td>
                     <td>{{ event.durationTo|date("d.m.Y") }}</td>
                     <td>{{ event.title }}</td>
+                    <td>{{ event.category.title }}</td>
                     <td>
                         <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
