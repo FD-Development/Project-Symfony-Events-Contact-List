@@ -6,7 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
-use App\Service\EventService;
+use App\Form\Type\EventType;
 use App\Service\EventServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,11 +50,29 @@ class EventController extends AbstractController
 
         return $this->render('event/index.html.twig', ['pagination' => $pagination]);
     }
+
     #[Route(
-        '/{id}', name:'event_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
+        '/{id}', name: 'event_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
     )]
     public function show(Event $event): Response
     {
         return $this->render('event/show.html.twig', ['event' => $event]);
+    }
+
+    #[Route(
+         '/create', name: 'event_create', methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $event = new Event();
+        $form = $this->CreateForm(EventType::class, $event);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->eventService->save($event);
+        }
+        return $this->render(
+            'event/create.html.twig', ['form' => $form->createView()]
+        );
     }
 }

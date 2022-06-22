@@ -11,6 +11,7 @@ use App\Service\EventServiceInterface;
 use App\Repository\EventRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Entity\Event;
 
 /**
  * Class EventService.
@@ -54,4 +55,12 @@ class EventService implements EventServiceInterface
             EventRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+    public function save(Event $event): void
+    {
+
+        $this->eventRepository->save($event);
+    }
+
+
 }

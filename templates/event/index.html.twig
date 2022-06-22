@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.task_list'|trans }}
+    {{ 'title.event_list'|trans }}
 {% endblock %}
 
+
+
 {% block body %}
-    <h1>{{ 'title.task_list'|trans }}</h1>
+    <h1>{{ 'title.event_list'|trans }}</h1>
+    <div>
+        <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
+            {{ 'action.create'|trans }}
+        </a>
+    </div>
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -29,6 +37,7 @@
                     <td>{{ event.durationTo|date("d.m.Y") }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.category.title }}</td>
+                    {# <td>{{ event.category.tag }}</td> #}
                     <td>
                         <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}

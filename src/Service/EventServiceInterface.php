@@ -23,4 +23,10 @@ interface EventServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    public function save(Event $event): void;
+
+    #public function delete(Event $event): void;
+
+    #public function update(Event $event): void;
+
 }
