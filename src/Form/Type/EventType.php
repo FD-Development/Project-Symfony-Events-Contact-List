@@ -51,7 +51,6 @@ class EventType extends AbstractType
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'input_format' => 'd-m-Y H:i:s',
-                'placeholder' =>['hour' => '00', 'minute' => '00'],
 
             ]
         );
@@ -63,10 +62,8 @@ class EventType extends AbstractType
                 'time_label' => 'label.time',
                 'required' => true,
                 'date_widget' => 'single_text',
-                'time_widget' => 'choice',
+                'time_widget' => 'single_text',
                 'input_format' => 'd-m-Y H:i:s',
-                'placeholder' =>['hour' => '00', 'minute' => '00'],
-
             ]
         );
 
@@ -79,8 +76,8 @@ class EventType extends AbstractType
                     return $category->getTitle();
                 },
                 'label' => 'label.category',
-                'required' => false,
-                'placeholder' => 'label.none',
+                'required' => true,
+                'placeholder' => false,
             ]
         );
 

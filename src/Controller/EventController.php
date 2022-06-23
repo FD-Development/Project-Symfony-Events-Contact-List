@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class TaskController.
@@ -27,9 +28,10 @@ class EventController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(EventServiceInterface $eventService)
+    public function __construct(EventServiceInterface $eventService, TranslatorInterface $translation)
     {
         $this->eventService = $eventService;
+        $this->translator = $translation;
     }
 
     /**
@@ -70,6 +72,11 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->eventService->save($event);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
         }
         return $this->render(
             'event/create.html.twig', ['form' => $form->createView()]

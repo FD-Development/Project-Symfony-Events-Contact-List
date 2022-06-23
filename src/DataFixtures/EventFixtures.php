@@ -23,7 +23,7 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
         if (null === $this->manager || null === $this->faker) {
             return;
         }
-        $this->createMany(100, 'events', function (int $i) {
+        $this->createMany(7, 'events', function (int $i) {
             $event = new Event();
             $event->setTitle($this->faker->sentence);
             $event->setDurationFrom(
