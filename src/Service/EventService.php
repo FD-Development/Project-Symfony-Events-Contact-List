@@ -58,8 +58,12 @@ class EventService implements EventServiceInterface
 
     public function save(Event $event): void
     {
-
         $this->eventRepository->save($event);
+    }
+
+    public function delete(Event $event): void
+    {
+        $this->eventRepository->delete($event);
     }
 
 

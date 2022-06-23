@@ -14,11 +14,19 @@
             <dd>{{ event.durationFrom|date("H:i  d.m.Y") }}</dd>
             <dt>{{ 'label.duration_to'|trans }}</dt>
             <dd>{{ event.durationTo|date("H:i  d.m.Y") }}</dd>
-            {# <dt>{{ 'label.category'|trans }}</dt>
-            <dd>{{  event.category.title }}</dd>#}
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  event.category.title }}</dd>
             <dt>{{ 'label.description' }}</dt>
             <dd>{{ event.description|trans}}</dd>
         </dl>
+        <div>
+            <a href="{{ url('event_edit', {id: event.id}) }}" title="{{ 'action.edit'|trans }}">
+                {{ 'action.edit'|trans }}
+            </a>
+            <a href="{{ url('event_delete', {id: event.id}) }}" title="{{ 'action.delete'|trans }}">
+                {{ 'action.delete'|trans }}
+            </a>
+        </div>
         <p>
             <a href="{{ url('event_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}

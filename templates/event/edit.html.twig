@@ -1,0 +1,6 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title.event_edit'|trans({'%id%': event.id|default('')}),
+    form: form,
+    submit_label: 'action.edit'|trans,
+    back_to_list_path: 'event_index',
+} %}

@@ -73,11 +73,22 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Save entity.
      *
-     * @param Event $event Category entity
+     * @param Event $event Event entity
      */
     public function save(Event $event): void
     {
         $this->_em->persist($event);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Event $event Event entity
+     */
+    public function delete(Event $event): void
+    {
+        $this->_em->remove($event);
         $this->_em->flush();
     }
 
