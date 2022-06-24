@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
@@ -13,16 +14,24 @@ class Event
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 64)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 64)]
     private ?string $title = null;
 
     #[ORM\Column(type: 'datetime')]
+    #[Assert\Type('DateTime')]
     private $durationFrom;
 
     #[ORM\Column(type: 'datetime')]
+    #[Assert\Type('DateTime')]
+    #[Assert\GreaterThanOrEqual(propertyPath:'durationFrom')]
     private $durationTo;
 
     #[ORM\Column(type: 'text', nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 675)]
     private $description;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
@@ -68,7 +77,6 @@ class Event
 
         return $this;
     }
-
 
     public function getDescription(): ?string
     {
