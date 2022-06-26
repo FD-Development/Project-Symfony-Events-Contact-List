@@ -8,6 +8,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Event;
 use App\Entity\Category;
+use App\Entity\Tags;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -35,6 +36,9 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
 
             $category = $this->getRandomReference('categories');
             $event->setCategory($category);
+
+            $tag = $this->getRandomReference('tags');
+            $event->addTag($tag);
 
             $event->setDescription($this->faker->sentence);
 
