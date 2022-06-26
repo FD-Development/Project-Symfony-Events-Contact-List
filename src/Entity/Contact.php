@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -14,22 +15,36 @@ class Contact
     private $id;
 
     #[ORM\Column(type: 'string', length: 155)]
+    #[Assert\Length(max: 155)]
     private $name;
 
     #[ORM\Column(type: 'string', length: 155, nullable: true)]
+    #[Assert\Length(max: 155)]
     private $surname;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 45)]
     private $email;
 
-    #[ORM\Column(type: 'decimal', precision: 9, scale: '0', nullable: true)]
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 20)]
     private $telephone;
 
     #[ORM\Column(type: 'date', nullable: true)]
+    #[Assert\Type('datetime')]
     private $birthdate;
 
     #[ORM\Column(type: 'text', nullable: true)]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 675)]
     private $note;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[Assert\Type(Category::class)]
+    #[Assert\NotBlank]
+    private $category;
 
     public function getId(): ?int
     {
@@ -104,6 +119,18 @@ class Contact
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

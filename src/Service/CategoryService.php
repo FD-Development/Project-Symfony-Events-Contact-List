@@ -10,6 +10,7 @@ namespace App\Service;
 use App\Service\CategoryServiceInterface;
 use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
+use App\Repository\ContactRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Category;
@@ -30,6 +31,11 @@ class CategoryService implements CategoryServiceInterface
     protected EventRepository $eventRepository;
 
     /**
+     * Contact repository.
+     */
+    private ContactRepository $contactRepository;
+
+    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -40,9 +46,10 @@ class CategoryService implements CategoryServiceInterface
      * @param CategoryRepository $categoryRepository Category repository
      * @param PaginatorInterface $paginator Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EventRepository $eventRepository)
+    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EventRepository $eventRepository, ContactRepository $contactRepository)
     {
         $this->eventRepository = $eventRepository;
+        $this->contactRepository = $contactRepository;
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
     }
@@ -84,9 +91,10 @@ class CategoryService implements CategoryServiceInterface
     public function canBeDeleted(Category $category): bool
     {
         try {
-            $result = $this->eventRepository->countByCategory($category);
+            $resultEvents = $this->eventRepository->countByCategory($category);
+            $resultContacts = $this->contactRepository->countByCategory($category);
 
-            return !($result > 0);
+            return !($resultEvents > 0 || $resultContacts > 0);
         } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
