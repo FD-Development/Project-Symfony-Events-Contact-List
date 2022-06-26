@@ -2,26 +2,32 @@
 
 
 /**
- * Event service.
+ * Tag service.
  */
 
 namespace App\Service;
 
-use App\Service\EventServiceInterface;
+use App\Service\TagServiceInterface;
+use App\Repository\TagRepository;
 use App\Repository\EventRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Entity\Event;
+use App\Entity\Tag;
 
 /**
- * Class EventService.
+ * Class TagService.
  */
-class EventService implements EventServiceInterface
+class TagService implements TagServiceInterface
 {
+    /**
+     * Tag repository.
+     */
+    private TagRepository $tagRepository;
+
     /**
      * Event repository.
      */
-    private EventRepository $eventRepository;
+    protected EventRepository $eventRepository;
 
     /**
      * Paginator.
@@ -31,12 +37,13 @@ class EventService implements EventServiceInterface
     /**
      * Constructor.
      *
-     * @param EventRepository $eventRepository Event repository
+     * @param TagRepository $tagRepository Tag repository
      * @param PaginatorInterface $paginator Paginator
      */
-    public function __construct(EventRepository $eventRepository, PaginatorInterface $paginator)
+    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, EventRepository $eventRepository)
     {
         $this->eventRepository = $eventRepository;
+        $this->tagRepository = $tagRepository;
         $this->paginator = $paginator;
     }
 
@@ -50,21 +57,22 @@ class EventService implements EventServiceInterface
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->eventRepository->queryAll(),
+            $this->tagRepository->queryAll(),
             $page,
-            EventRepository::PAGINATOR_ITEMS_PER_PAGE
+            TagRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
 
-    public function save(Event $event): void
+    public function save(Tag $tag): void
     {
-        $this->eventRepository->save($event);
+        $this->tagRepository->save($tag);
     }
 
-    public function delete(Event $event): void
+    public function delete(Tag $tag): void
     {
-        $this->eventRepository->delete($event);
+        $this->tagRepository->delete($tag);
     }
+
 
     /**
      * Find by title.

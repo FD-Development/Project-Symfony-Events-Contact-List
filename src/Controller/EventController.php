@@ -1,6 +1,6 @@
 <?php
 /**
- * Contact controller.
+ * Event controller.
  */
 
 namespace App\Controller;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class TaskController.
+ * Class EventController.
  */
 #[Route('/event')]
 class EventController extends AbstractController

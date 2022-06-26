@@ -123,6 +123,17 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function countByTag(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('event.id'))
+            ->where('event.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

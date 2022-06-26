@@ -16,6 +16,8 @@
             <dd>{{ event.durationTo|date("H:i  d.m.Y") }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  event.category.title }}</dd>
+            <dt>{{ 'label.tags'|trans }}</dt>
+            <dd>{{ event.tags|join(', ') }}</dd>
             <dt>{{ 'label.description' }}</dt>
             <dd>{{ event.description|trans}}</dd>
         </dl>

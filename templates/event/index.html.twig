@@ -14,6 +14,12 @@
         </a>
     </div>
 
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            {% include 'default/_single_alert_message.html.twig' %}
+        {% endfor %}
+    {% endfor %}
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
