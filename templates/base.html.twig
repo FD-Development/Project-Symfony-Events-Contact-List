@@ -14,6 +14,25 @@
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {% endblock %}
 </head>
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ url('event_index') }}" title="{{ 'title.event_list'|trans }}">
+                {{ 'title.event_list'|trans }}</a>
+            </li>
+            <li>
+                <a href="{{ url('contact_index') }}" title="{{ 'title.contact_list'|trans }}">
+                    {{ 'title.contact_list'|trans }}</a>
+            </li>
+            <li>
+                <a href="{{ url('category_index') }}" title="{{ 'title.category_list'|trans }}">
+                    {{ 'title.category_list'|trans }}</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
 <body>
 {% for type, messages in app.session.flashBag.all %}
     {% for message in messages %}
