@@ -26,7 +26,7 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
         }
         $this->createMany(7, 'events', function (int $i) {
             $event = new Event();
-            $event->setTitle($this->faker->sentence);
+            $event->setTitle($this->faker->title);
             $event->setDurationFrom(
                  $this->faker->dateTimeBetween('-50 days', '-20 days')
             );
