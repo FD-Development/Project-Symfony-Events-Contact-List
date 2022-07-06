@@ -31,8 +31,12 @@ class ContactFixtures extends AbstractBaseFixtures implements DependentFixtureIn
             $contact->setTelephone($this->faker->phoneNumber());
             $contact->setEmail($this->faker->email);
             $contact->setNote($this->faker->text(250));
+
             $category = $this->getRandomReference('categories');
             $contact->setCategory($category);
+
+            $author = $this->getRandomReference('users');
+            $contact->setAuthor($author);
 
 
             $this->manager->persist($contact);

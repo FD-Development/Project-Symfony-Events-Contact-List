@@ -66,8 +66,14 @@ class EventController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        $user = $this->getUser();
         $event = new Event();
-        $form = $this->CreateForm(EventType::class, $event);
+        $event->setAuthor($user);
+        $form = $this->CreateForm(
+            EventType::class,
+            $event,
+            ['action' => $this->generateUrl('event_create')]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

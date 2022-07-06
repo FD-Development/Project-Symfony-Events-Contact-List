@@ -66,8 +66,14 @@ class ContactController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        $user = $this->getUser();
         $contact = new Contact();
-        $form = $this->CreateForm(ContactType::class, $contact);
+        $contact->setAuthor($user);
+        $form = $this->CreateForm(
+            ContactType::class,
+            $contact,
+            ['action' => $this->generateUrl('contact_create')]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
