@@ -22,7 +22,7 @@ interface EventServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page): PaginationInterface;
+    public function getPaginatedList(int $page, User $author): PaginationInterface;
 
     public function save(Event $event): void;
 

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Event;
 use App\Entity\Category;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -60,6 +61,23 @@ class EventRepository extends ServiceEntityRepository
             )
             ->join('event.category', 'category')
             ->orderBy('event.durationFrom', 'DESC');
+    }
+
+    /**
+     * Query events by author.
+     *
+     * @param User $user User entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        $queryBuilder->andWhere('event.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
     }
 
     public function add(Event $entity, bool $flush = false): void
