@@ -112,6 +112,24 @@ class EventRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
+    /**
+     * Query all records that start in the after the specified date.
+     *
+     * @param User $user
+     * @param string $date
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryUpcoming(User $user, string $date) :QueryBuilder
+    {
+        $queryBuilder = $this->queryByAuthor($user);
+
+        $queryBuilder
+            ->andWhere('event.dateFrom > :date')
+            ->orderBy('event.dateFrom,event.timeFrom', 'DESC')
+            ->setParameter('date', $date );
+        return $queryBuilder;
+    }
 
     /**
      * Save entity.

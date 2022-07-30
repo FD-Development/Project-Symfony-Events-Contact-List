@@ -8,12 +8,21 @@
 
 {% block body %}
     <h1>{{ 'title.event_list_all'|trans }}</h1>
-    <div>
-        <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
-            {{ 'action.create'|trans }}
-        </a>
-    </div>
-    {{ dump(pagination) }}
+
+    <nav>
+        <menu>
+            <li>
+                <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
+                    {{ 'action.create'|trans }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('event_list') }}" title="{{ 'title.event_list_all'|trans }}">
+                    {{ 'title.event_list_all'|trans }}
+                </a>
+            </li>
+        </menu>
+    </nav>
 
     <h2>{{ 'title.event_list'|trans }}</h2>
 
@@ -30,6 +39,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.duration_to'|trans, 'event.dateTo') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'event.category.title' )}}</th>
+                <th>{{ 'label.tags'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -41,6 +51,7 @@
                     <td>{{ event.title }}</td>
                     <td>{{ event.dateTo|date('d.m.Y') }}</td>
                     <td>{{ event.category.title }}</td>
+                    <td>{{ event.tags|join(', ') }}</td>
                     <td>
                         <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}

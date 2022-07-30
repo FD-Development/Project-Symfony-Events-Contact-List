@@ -50,17 +50,22 @@ class EventController extends AbstractController
         $currentDate = new \DateTime('now');
 
         $paginationActive = $this->eventService->getEventsByDate(
-            $request->query->getInt('page0', 1),
+            $request->query->getInt('page', 1),
             $this->getUser(),
             $currentDate
         );
 
-
+        $upcoming = $this->eventService->getUpcomingEvents(
+            $request->query->getInt('upcoming_page', 1),
+            $this->getUser(),
+            $currentDate
+        );
 
         return $this->render(
             'event/index.html.twig',
             [
-                'pagination' => $paginationActive
+                'pagination' => $paginationActive,
+                'upcoming' => $upcoming
             ]
         );
     }

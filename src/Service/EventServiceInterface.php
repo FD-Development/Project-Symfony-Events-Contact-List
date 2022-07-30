@@ -35,6 +35,15 @@ interface EventServiceInterface
      */
     public function getEventsByDate(int $page, User $author, DateTime $date): PaginationInterface;
 
+    /**
+     * Get paginated events list corresponding to specified date.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getUpcomingEvents(int $page, User $author, DateTime $date): PaginationInterface;
+
     public function save(Event $event): void;
 
     public function delete(Event $event): void;

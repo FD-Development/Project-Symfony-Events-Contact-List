@@ -8,6 +8,7 @@
 
 {% block body %}
     <h1>{{ 'title.event_list'|trans }}</h1>
+
         <nav>
             <menu>
                 <li>
@@ -27,9 +28,6 @@
 
     {% if pagination is defined and pagination.items|length %}
 
-        <div class="navigation text-center">
-            {{ knp_pagination_render(pagination) }}
-        </div>
 
         <table class="table table-striped">
             <thead>
@@ -75,6 +73,51 @@
         </p>
     {% endif %}
 
+    {# EVENTS UPCOMING #}
+    <h2>{{ 'title.event_upcoming'|trans }}</h2>
+
+    {% if upcoming is defined and upcoming.items|length %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(upcoming, 'label.date_from'|trans, 'event.dateFrom') }}</th>
+                <th>{{ knp_pagination_sortable(upcoming, 'label.time_form'|trans, 'event.timeFrom') }}</th>
+                <th>{{ knp_pagination_sortable(upcoming, 'label.title'|trans, 'event.title') }}</th>
+                <th>{{ knp_pagination_sortable(upcoming, 'label.category'|trans, 'event.category.title' )}}</th>
+                <th>{{ 'label.tags'|trans }}<th/>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in upcoming.items %}
+
+                <tr>
+                    <td>{{ event.dateFrom|date('d.m.Y') }}</td>
+                    <td>{{ event.timeFrom|date('H:i') }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.category.title }}</td>
+                    <td>{{ event.tags|join(', ') }}</td>
+                    <td>
+                        <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(upcoming) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
 
 
 {% endblock %}

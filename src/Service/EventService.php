@@ -81,7 +81,30 @@ class EventService implements EventServiceInterface
         );
     }
 
+    /**
+     * Get events that start in the future.
+     *
+     * @param int $page Page number
+     * @param User $author Author
+     * @param DateTime $date Date to search by
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getUpcomingEvents(int $page, User $author, DateTime $date): PaginationInterface
+    {
+        $date = date_format( $date, 'Y-m-d');
 
+        return $this->paginator->paginate(
+            $this->eventRepository->queryUpcoming($author , $date),
+            $page,
+            EventRepository::PAGINATOR_ITEMS_PER_PAGE,
+            array(
+                'pageParameterName' => 'upcoming_page',
+                'sortFieldParameterName' => 'sort1',
+        'sortDirectionParameterName' => 'direction1',
+            )
+        );
+    }
 
     public function save(Event $event): void
     {
