@@ -7,23 +7,15 @@
 
 
 {% block body %}
-    <h1>{{ 'title.event_list'|trans }}</h1>
-        <nav>
-            <menu>
-                <li>
-                    <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
-                        {{ 'action.create'|trans }}
-                    </a>
-                </li>
-                <li>
-                      <a href="{{ url('event_list') }}" title="{{ 'title.event_list_all'|trans }}">
-                        {{ 'title.event_list_all'|trans }}
-                    </a>
-                </li>
-            </menu>
-        </nav>
+    <h1>{{ 'title.event_list_all'|trans }}</h1>
+    <div>
+        <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
+            {{ 'action.create'|trans }}
+        </a>
+    </div>
+    {{ dump(pagination) }}
 
-    <h2>{{ 'title.event_active'|trans }}</h2>
+    <h2>{{ 'title.event_list'|trans }}</h2>
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -34,11 +26,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.date_from'|trans, 'event.dateFrom') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.time_form'|trans, 'event.timeFrom') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.date_to'|trans, 'event.dateTo') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.time_to'|trans, 'event.timeTo') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.duration_from'|trans, 'event.dateFrom') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.duration_to'|trans, 'event.dateTo') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'event.category.title' )}}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -48,12 +38,9 @@
 
                 <tr>
                     <td>{{ event.dateFrom|date('d.m.Y') }}</td>
-                    <td>{{ event.timeFrom|date('H:i') }}</td>
-                    <td>{{ event.dateTo|date('d.m.Y') }}</td>
-                    <td>{{ event.timeTo|date('H:i')}}</td>
                     <td>{{ event.title }}</td>
+                    <td>{{ event.dateTo|date('d.m.Y') }}</td>
                     <td>{{ event.category.title }}</td>
-                    {# <td>{{ event.category.tag }}</td> #}
                     <td>
                         <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
@@ -74,7 +61,4 @@
             {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
-
-
-
 {% endblock %}

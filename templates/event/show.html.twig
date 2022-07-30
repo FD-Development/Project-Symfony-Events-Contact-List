@@ -11,9 +11,9 @@
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  event.title }}</dd>
             <dt>{{ 'label.duration_from'|trans }}</dt>
-            <dd>{{ event.durationFrom|date("H:i  d.m.Y") }}</dd>
+            <dd>{{ event.dateFrom|date("d.m.Y") }} [{{ event.timeFrom|date("H:i") }}]</dd>
             <dt>{{ 'label.duration_to'|trans }}</dt>
-            <dd>{{ event.durationTo|date("H:i  d.m.Y") }}</dd>
+            <dd>{{ event.dateTo|date("d.m.Y") }} [{{ event.timeTo|date("H:i") }}]</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  event.category.title }}</dd>
             <dt>{{ 'label.tags'|trans }}</dt>
