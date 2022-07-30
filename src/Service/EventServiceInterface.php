@@ -9,6 +9,8 @@ namespace App\Service;
 use App\Entity\Event;
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
+use DateTime;
 
 /**
  * Interface EventServiceInterface.
@@ -23,6 +25,15 @@ interface EventServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page, User $author): PaginationInterface;
+
+    /**
+     * Get paginated events list corresponding to specified date.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getEventsByDate(int $page, User $author, DateTime $date): PaginationInterface;
 
     public function save(Event $event): void;
 

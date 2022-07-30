@@ -13,7 +13,8 @@ use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -61,29 +62,47 @@ class EventType extends AbstractType
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]);
-        $builder->add(
-                'duration_from',
-                DateTimeType::class,
-            [
-                'date_label' => 'label.date_form',
-                'time_label' => 'label.time',
-                'required' => true,
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
-                'input_format' => 'd-m-Y H:i:s',
 
+        $builder->add(
+                'date_from',
+                DateType::class,
+            [
+                'label' => 'label.date_form',
+                'required' => true,
+                'widget' => 'single_text',
+                'input_format' => 'd-m-Y',
             ]
         );
         $builder->add(
-            'duration_to',
-            DateTimeType::class,
+            'time_from',
+            TimeType::class,
             [
-                'date_label' => 'label.date_form',
-                'time_label' => 'label.time',
+                'label' => 'label.time',
                 'required' => true,
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
-                'input_format' => 'd-m-Y H:i:s',
+                'widget' => 'single_text',
+                'input_format' => 'H:i',
+            ]
+        );
+
+        $builder->add(
+            'date_to',
+            DateType::class,
+            [
+                'label' => 'label.date_to',
+                'required' => true,
+                'widget' => 'single_text',
+                'input_format' => 'd-m-Y',
+            ]
+        );
+
+        $builder->add(
+            'time_to',
+            TimeType::class,
+            [
+                'label' => 'label.time',
+                'required' => true,
+                'widget' => 'single_text',
+                'input_format' => 'H:i',
             ]
         );
 

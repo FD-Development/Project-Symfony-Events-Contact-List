@@ -13,6 +13,8 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Event;
  use App\Entity\User;
+use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
+use DateTime;
 
 /**
  * Class EventService.
@@ -57,6 +59,29 @@ class EventService implements EventServiceInterface
             EventRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+
+    /**
+     * Get events that are in current date.
+     *
+     * @param int $page Page number
+     * @param User $author Author
+     * @param DateTime $date Date to search by
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getEventsByDate(int $page, User $author, DateTime $date): PaginationInterface
+    {
+        $date = date_format( $date, 'Y-m-d');
+
+        return $this->paginator->paginate(
+            $this->eventRepository->queryByDate($author , $date),
+            $page,
+            EventRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+
 
     public function save(Event $event): void
     {

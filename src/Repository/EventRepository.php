@@ -6,7 +6,11 @@ use App\Entity\Event;
 use App\Entity\Category;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\NativeQuery;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -29,6 +33,9 @@ class EventRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
+
+
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -56,38 +63,55 @@ class EventRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial event.{id, durationFrom, durationTo, title, description}',
+                'partial event.{id, dateFrom, timeFrom, dateTo, timeTo, title, description}',
                 'partial category.{id, title}'
             )
             ->join('event.category', 'category')
-            ->orderBy('event.durationFrom', 'DESC');
+            ->orderBy('event.dateFrom, event.timeFrom', 'DESC');
     }
 
     /**
-     * Query events by author.
+     * Query all records by specific user.
      *
-     * @param User $user User entity
+     * @param User $user
      *
-     * @return QueryBuilder Query builder
+     * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function queryByAuthor(User $user): QueryBuilder
     {
-        $queryBuilder = $this->queryAll();
-
-        $queryBuilder->andWhere('event.author = :author')
+        return $this->getOrCreateQueryBuilder()
+            ->select(
+            'partial event.{id, dateFrom, dateTo, timeFrom, timeTo, title, category}',
+            'partial category.{id, title}'
+        )
+            ->join('event.category', 'category')
+            ->where('event.author = :author')
             ->setParameter('author', $user);
+    }
 
+    /**
+     * Query all records that contain specified date.
+     *
+     * @param User $user
+     * @param string $date
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByDate(User $user, string $date) :QueryBuilder
+    {
+        $queryBuilder = $this->queryByAuthor($user);
+        $queryBuilder
+            ->andWhere($queryBuilder->expr()->between(
+                ':date',
+                'event.dateFrom',
+                'event.dateTo'
+            )
+            )
+            ->orderBy('event.dateFrom,event.timeFrom', 'DESC')
+            ->setParameter('date', $date );
         return $queryBuilder;
     }
 
-    public function add(Event $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
 
     /**
      * Save entity.

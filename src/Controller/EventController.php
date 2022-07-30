@@ -46,12 +46,48 @@ class EventController extends AbstractController
     )]
     public function index(Request $request): Response
     {
+
+        $currentDate = new \DateTime('now');
+
+        $paginationActive = $this->eventService->getEventsByDate(
+            $request->query->getInt('page0', 1),
+            $this->getUser(),
+            $currentDate
+        );
+
+
+
+        return $this->render(
+            'event/index.html.twig',
+            [
+                'pagination' => $paginationActive
+            ]
+        );
+    }
+
+    /**
+     * List action.
+     *
+     * @param Request $request HTTP Request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/list', name: 'event_list', methods: 'GET'
+    )]
+    public function list(Request $request): Response
+    {
         $pagination = $this->eventService->getPaginatedList(
             $request->query->getInt('page', 1),
             $this->getUser()
         );
 
-        return $this->render('event/index.html.twig', ['pagination' => $pagination]);
+        return $this->render(
+            'event/list.html.twig',
+            [
+                'pagination' => $pagination,
+            ]
+        );
     }
 
     #[Route(

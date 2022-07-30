@@ -25,16 +25,19 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
         if (null === $this->manager || null === $this->faker) {
             return;
         }
-        $this->createMany(100, 'events', function (int $i) {
+        $this->createMany(200, 'events', function (int $i) {
             $event = new Event();
             $event->setTitle($this->faker->sentence(3));
-            $event->setDurationFrom(
-                 $this->faker->dateTimeBetween('-50 days', '-20 days')
-            );
-            $event->setDurationTo(
-                 $this->faker->dateTimeBetween('-19 days', '-1 days')
-            );
 
+            $startDuration = $this->faker->dateTimeBetween('-4 days', '+11  days');
+            $event->setDateFrom( $startDuration );
+            $event->setTimeFrom( $startDuration );
+            $event->setdateTo(
+                 $this->faker->dateTimeInInterval($startDuration , '+3 days')
+            );
+            $event->setTimeTo(
+                $this->faker->dateTimeInInterval($startDuration , '+3 days')
+            );
             $event->setDescription($this->faker->sentence);
 
             $category = $this->getRandomReference('categories');

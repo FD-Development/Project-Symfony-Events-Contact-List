@@ -23,14 +23,6 @@ class Event
     #[Assert\Length(min: 3, max: 64)]
     private ?string $title = null;
 
-    #[ORM\Column(type: 'datetime')]
-    #[Assert\Type('DateTime')]
-    private $durationFrom;
-
-    #[ORM\Column(type: 'datetime')]
-    #[Assert\Type('DateTime')]
-    #[Assert\GreaterThanOrEqual(propertyPath:'durationFrom')]
-    private $durationTo;
 
     #[ORM\Column(type: 'text', nullable: true)]
     #[Assert\Type('string')]
@@ -53,6 +45,23 @@ class Event
     #[Assert\Type(User::class)]
     private ?User $author;
 
+    #[ORM\Column(type: 'time')]
+    #[Assert\Type('DateTime')]
+    private $timeFrom;
+
+    #[ORM\Column(type: 'date')]
+    #[Assert\Type('DateTime')]
+    #[Assert\GreaterThanOrEqual(propertyPath:'dateFrom')]
+    private $dateFrom;
+
+    #[ORM\Column(type: 'time')]
+    #[Assert\Type('DateTime')]
+    private $timeTo;
+
+    #[ORM\Column(type: 'date')]
+    #[Assert\Type('DateTime')]
+    private $dateTo;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -71,30 +80,6 @@ class Event
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDurationFrom(): ?\DateTimeInterface
-    {
-        return $this->durationFrom;
-    }
-
-    public function setDurationFrom(\DateTimeInterface $durationFrom): self
-    {
-        $this->durationFrom = $durationFrom;
-
-        return $this;
-    }
-
-    public function getDurationTo(): ?\DateTimeInterface
-    {
-        return $this->durationTo;
-    }
-
-    public function setDurationTo(\DateTimeInterface $durationTo): self
-    {
-        $this->durationTo = $durationTo;
 
         return $this;
     }
@@ -155,6 +140,54 @@ class Event
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getTimeFrom(): ?\DateTimeInterface
+    {
+        return $this->timeFrom;
+    }
+
+    public function setTimeFrom(\DateTimeInterface $timeFrom): self
+    {
+        $this->timeFrom = $timeFrom;
+
+        return $this;
+    }
+
+    public function getDateFrom(): ?\DateTimeInterface
+    {
+        return $this->dateFrom;
+    }
+
+    public function setDateFrom(\DateTimeInterface $dateFrom): self
+    {
+        $this->dateFrom = $dateFrom;
+
+        return $this;
+    }
+
+    public function getTimeTo(): ?\DateTimeInterface
+    {
+        return $this->timeTo;
+    }
+
+    public function setTimeTo(\DateTimeInterface $timeTo): self
+    {
+        $this->timeTo = $timeTo;
+
+        return $this;
+    }
+
+    public function getDateTo(): ?\DateTimeInterface
+    {
+        return $this->dateTo;
+    }
+
+    public function setDateTo(\DateTimeInterface $dateTo): self
+    {
+        $this->dateTo = $dateTo;
 
         return $this;
     }
