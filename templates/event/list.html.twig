@@ -9,16 +9,16 @@
 {% block body %}
     <h1>{{ 'title.event_list_all'|trans }}</h1>
 
-    <nav>
-        <menu>
-            <li>
-                <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
+    <nav  class="navbar navbar-expand-lg bg-light">
+        <menu class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
                     {{ 'action.create'|trans }}
                 </a>
             </li>
-            <li>
-                <a href="{{ url('event_list') }}" title="{{ 'title.event_list_all'|trans }}">
-                    {{ 'title.event_list_all'|trans }}
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('event_index') }}" title="{{ 'title.event_main'|trans }}">
+                    {{ 'title.events_main'|trans }}
                 </a>
             </li>
         </menu>
@@ -50,8 +50,22 @@
                     <td>{{ event.dateFrom|date('d.m.Y') }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.dateTo|date('d.m.Y') }}</td>
-                    <td>{{ event.category.title }}</td>
-                    <td>{{ event.tags|join(', ') }}</td>
+                    <td>
+                        <a href="{{ url('event_list', {'filters.category_id' : event.category.id}) }}" title="{{ event.category.title }}">
+                            {{ event.category.title }}
+                        </a>
+                    </td>
+                    <td>
+                    {% if event.tags is defined and event.tags|length %}
+                        {% for tag in event.tags %}
+                            <a href="{{ url('event_list', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                                {{ tag.title }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                    </td>
                     <td>
                         <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
@@ -65,6 +79,12 @@
 
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <div>
+            <a href="{{ url('event_list') }}" title="{{ 'title.clear_filters'|trans }}">
+                {{ 'title.clear_filters'|trans }}
+            </a>
         </div>
 
     {% else %}

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Event;
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\AbstractQuery;
@@ -57,7 +58,7 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -73,33 +74,39 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records by specific user.
      *
-     * @param User $user
+     * @param User $user    User Entity
+     * @param array $filter Filters array
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
-    public function queryByAuthor(User $user): QueryBuilder
+    public function queryByAuthor(User $user, array $filter = []): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-            'partial event.{id, dateFrom, dateTo, timeFrom, timeTo, title, category}',
-            'partial category.{id, title}'
-        )
+                'partial event.{id, dateFrom, dateTo, timeFrom, timeTo, title, category}',
+                'partial category.{id, title}',
+                'partial tags.{id,title}'
+            )
             ->join('event.category', 'category')
+            ->leftJoin('event.tags', 'tags')
             ->where('event.author = :author')
             ->setParameter('author', $user);
+
+        return $this->applyFiltersToList($queryBuilder, $filter);
     }
 
     /**
      * Query all records that contain specified date.
      *
-     * @param User $user
-     * @param string $date
+     * @param User $user    User Entity
+     * @param string $date  Date string
+     * @param array $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryByDate(User $user, string $date) :QueryBuilder
+    public function queryByDate(User $user, string $date, array $filter = []) :QueryBuilder
     {
-        $queryBuilder = $this->queryByAuthor($user);
+        $queryBuilder = $this->queryByAuthor($user, $filter);
         $queryBuilder
             ->andWhere($queryBuilder->expr()->between(
                 ':date',
@@ -115,19 +122,43 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records that start in the after the specified date.
      *
-     * @param User $user
-     * @param string $date
+     * @param User $user    User Entity
+     * @param string $date  Date string
+     * @param array $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryUpcoming(User $user, string $date) :QueryBuilder
+    public function queryUpcoming(User $user, string $date, array $filter = []) :QueryBuilder
     {
-        $queryBuilder = $this->queryByAuthor($user);
+        $queryBuilder = $this->queryByAuthor($user, $filter);
 
         $queryBuilder
             ->andWhere('event.dateFrom > :date')
             ->orderBy('event.dateFrom,event.timeFrom', 'DESC')
             ->setParameter('date', $date );
+        return $queryBuilder;
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
+            $queryBuilder->andWhere('tags IN (:tag)')
+                ->setParameter('tag', $filters['tag']);
+        }
+
         return $queryBuilder;
     }
 
@@ -183,6 +214,16 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Count events by Tag.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of events in Tag
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
     public function countByTag(Category $category): int
     {
         $qb = $this->getOrCreateQueryBuilder();

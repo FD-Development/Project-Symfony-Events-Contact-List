@@ -36,6 +36,17 @@ interface CategoryServiceInterface
     */
     public function canBeDeleted(Category $category): bool;
 
+    /**
+     * Find by id.
+     *
+     * @param int $id Category id
+     *
+     * @return Category|null Category entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Category;
+
     #public function update(Category $category): void;
 
 }

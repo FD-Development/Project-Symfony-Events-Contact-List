@@ -48,17 +48,20 @@ class EventController extends AbstractController
     {
 
         $currentDate = new \DateTime('now');
+        $filters = $this->getFilters($request);
 
         $paginationActive = $this->eventService->getEventsByDate(
             $request->query->getInt('page', 1),
             $this->getUser(),
             $currentDate
         );
+        #Filtry specjalnie nie są przesyłane do aktywnych zadań.
 
         $upcoming = $this->eventService->getUpcomingEvents(
             $request->query->getInt('upcoming_page', 1),
             $this->getUser(),
-            $currentDate
+            $currentDate,
+            $filters
         );
 
         return $this->render(
@@ -82,9 +85,12 @@ class EventController extends AbstractController
     )]
     public function list(Request $request): Response
     {
+        $filters = $this->getFilters($request);
+
         $pagination = $this->eventService->getPaginatedList(
             $request->query->getInt('page', 1),
-            $this->getUser()
+            $this->getUser(),
+            $filters
         );
 
         return $this->render(
@@ -95,6 +101,13 @@ class EventController extends AbstractController
         );
     }
 
+    /**
+     * Show action.
+     *
+     * @param Event $event Event entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}', name: 'event_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
     )]
@@ -112,6 +125,13 @@ class EventController extends AbstractController
         return $this->render('event/show.html.twig', ['event' => $event]);
     }
 
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP Request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
          '/create', name: 'event_create', methods: 'GET|POST',
     )]
@@ -180,6 +200,14 @@ class EventController extends AbstractController
         );
     }
 
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Event $event Event entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}/delete', name: 'event_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
     )]
@@ -209,5 +237,23 @@ class EventController extends AbstractController
         return $this->render(
             'event/delete.html.twig', ['form' => $form->createView(), 'event' => $event]
         );
+    }
+
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int, tag_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+        $filters['tag_id'] = $request->query->getInt('filters_tag_id');
+
+        return $filters;
     }
 }

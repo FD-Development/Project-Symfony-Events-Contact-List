@@ -38,6 +38,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.time_to'|trans, 'event.timeTo') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'event.category.title' )}}</th>
+                <th>{{ 'label.tags'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -51,7 +52,7 @@
                     <td>{{ event.timeTo|date('H:i')}}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.category.title }}</td>
-                    {# <td>{{ event.category.tag }}</td> #}
+                    <td>{{ event.tags|join(', ') }}</td>
                     <td>
                         <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
@@ -85,7 +86,7 @@
                 <th>{{ knp_pagination_sortable(upcoming, 'label.time_form'|trans, 'event.timeFrom') }}</th>
                 <th>{{ knp_pagination_sortable(upcoming, 'label.title'|trans, 'event.title') }}</th>
                 <th>{{ knp_pagination_sortable(upcoming, 'label.category'|trans, 'event.category.title' )}}</th>
-                <th>{{ 'label.tags'|trans }}<th/>
+                <th>{{ 'label.tags'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -96,10 +97,24 @@
                     <td>{{ event.dateFrom|date('d.m.Y') }}</td>
                     <td>{{ event.timeFrom|date('H:i') }}</td>
                     <td>{{ event.title }}</td>
-                    <td>{{ event.category.title }}</td>
-                    <td>{{ event.tags|join(', ') }}</td>
                     <td>
-                        <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('event_index', {'filters.category_id' : event.category.id}) }}" title="{{ event.category.title }}">
+                            {{ event.category.title }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if event.tags is defined and event.tags|length %}
+                            {% for tag in event.tags %}
+                                <a href="{{ url('event_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                                    {{ tag.title }}
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            &nbsp;
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url('event_index', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
                         </a>
                     </td>
@@ -111,6 +126,11 @@
 
         <div class="navigation text-center">
             {{ knp_pagination_render(upcoming) }}
+        </div>
+        <div>
+            <a href="{{ url('event_list') }}" title="{{ 'title.clear_filters'|trans }}">
+                {{ 'title.clear_filters'|trans }}
+            </a>
         </div>
 
     {% else %}

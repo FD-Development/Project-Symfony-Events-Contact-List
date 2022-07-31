@@ -100,6 +100,16 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneById($value): ?Tag
+    {
+        $queryBuilder = $this->queryAll();
+        return $queryBuilder
+            ->andWhere('tag.id = :id')
+            ->setParameter('id', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 
 //    /**
 //     * @return Tag[] Returns an array of Tag objects

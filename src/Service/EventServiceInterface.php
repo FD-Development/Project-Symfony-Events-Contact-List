@@ -18,31 +18,39 @@ use DateTime;
 interface EventServiceInterface
 {
     /**
-     * Get paginated list.
+     * Get paginated list for specified user.
      *
      * @param int $page Page number
+     * @param User $author Author
+     * @param array $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, User $author): PaginationInterface;
+    public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface;
 
     /**
-     * Get paginated events list corresponding to specified date.
+     * Get paginated list of events that are in specified date.
      *
      * @param int $page Page number
+     * @param User $author Author
+     * @param DateTime $date Date to search by
+     * @param array $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getEventsByDate(int $page, User $author, DateTime $date): PaginationInterface;
+    public function getEventsByDate(int $page, User $author, DateTime $date, array $filters): PaginationInterface;
 
     /**
-     * Get paginated events list corresponding to specified date.
+     * Get paginated list of events that start after specified date.
      *
      * @param int $page Page number
+     * @param User $author Author
+     * @param DateTime $date Date to search by
+     * @param array $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getUpcomingEvents(int $page, User $author, DateTime $date): PaginationInterface;
+    public function getUpcomingEvents(int $page, User $author, DateTime $date, array $filters): PaginationInterface;
 
     public function save(Event $event): void;
 
