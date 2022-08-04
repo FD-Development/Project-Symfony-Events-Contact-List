@@ -1,0 +1,110 @@
+body{
+    background-color: #CCCCCC;
+}
+
+h2{
+	width: 60%;
+}
+
+nav ul{
+	width: 100%;
+	display:flex;
+	flex-direction: row;
+	justify-content:space-evenly;
+	flex-wrap:wrap-reverse;
+}
+
+nav ul li{
+	padding:5px 5%;
+	display:flex;
+	background-color: #2374AB;
+	list-style:none;
+	border-style: ridge;
+	border-width: 5px;
+	border-radius: 3px;
+	border-color: Black;
+}
+
+nav ul li a{
+	text-decoration: none;
+	width: inherit;
+	color: white;
+}
+
+.events-submenu li{
+	background-color:#660066;
+	border-radius: 20px;
+	border-style: inset;
+}
+
+thead{
+	background-color: #98FB98;
+	opacity: 90%;
+}
+
+thead th a{
+	text-decoration: underline black;
+	color: black;
+}
+
+tbody{
+	color: #660066;
+}
+
+tbody tr{
+
+	border-color:black;
+	border-width: 5px;
+	border-style:groove;
+}
+
+tbody td a{
+	text-decoration: none;
+	color: #CCCCCC;
+	margin: 3px;
+	padding: 3px;
+	border-radius: 4px;
+	background-color:#5863F8;
+}
+
+.date{
+	width:	95px;
+}
+.time{
+	width: 100px;
+}
+
+dl{
+	width: fit-content;
+	margin-left: 2%;
+}
+dl dt{
+	background-color: #98FB98;
+	padding: 3px;
+	border-width: 2px;
+	border-color: black;
+	border-top-right-radius: 5px;
+}
+dl dd{
+	background-color: #CFCFCF;
+	padding: 5px;
+	border-width: 0 2px 2px 2px;
+	border-style:solid  dotted;
+	border-color: #660066;
+}
+
+form{
+	display:flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 0 10%;
+}
+#form-buttons{
+	display:flex;
+	flex-direction: row;
+	align-items:center;
+	justify-content: center;
+}
+#form-buttons div{
+	margin: 5px;
+}
