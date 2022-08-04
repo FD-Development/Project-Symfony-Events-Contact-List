@@ -67,7 +67,7 @@ class EventType extends AbstractType
                 'date_from',
                 DateType::class,
             [
-                'label' => 'label.date_form',
+                'label' => 'label.date_from',
                 'required' => true,
                 'widget' => 'single_text',
                 'input_format' => 'd-m-Y',
@@ -77,7 +77,7 @@ class EventType extends AbstractType
             'time_from',
             TimeType::class,
             [
-                'label' => 'label.time',
+                'label' => 'label.time_from',
                 'required' => true,
                 'widget' => 'single_text',
                 'input_format' => 'H:i',
@@ -99,7 +99,7 @@ class EventType extends AbstractType
             'time_to',
             TimeType::class,
             [
-                'label' => 'label.time',
+                'label' => 'label.time_to',
                 'required' => true,
                 'widget' => 'single_text',
                 'input_format' => 'H:i',
@@ -141,6 +141,7 @@ class EventType extends AbstractType
                 'label' => 'label.description',
                 'required' => false,
             ]);
+
     }
 
     /**

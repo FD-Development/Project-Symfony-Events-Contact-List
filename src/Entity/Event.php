@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Table(name: 'event')]
 #[ORM\Entity(repositoryClass: EventRepository::class)]
@@ -61,6 +62,16 @@ class Event
     #[ORM\Column(type: 'date')]
     #[Assert\Type('DateTime')]
     private $dateTo;
+
+    #[Assert\Callback]
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if ($this->getDateFrom() == $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo()){
+            $context->buildViolation('message.form_event_time_violation')
+                ->atPath('time_to')
+                ->addViolation();
+        }
+    }
 
     public function __construct()
     {
