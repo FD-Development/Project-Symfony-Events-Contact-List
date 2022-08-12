@@ -217,20 +217,26 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Count events by Tag.
      *
-     * @param Category $category Category
+     * @param Tag $tag Tag
      *
      * @return int Number of events in Tag
      *
      * @throws NoResultException
      * @throws NonUniqueResultException
      */
-    public function countByTag(Category $category): int
+    public function countByTag(Tag $tag): int
     {
         $qb = $this->getOrCreateQueryBuilder();
+        $tagTable = $qb;
+        $tagTable ->select(
+                'partial event.{id, author}',
+                'partial tags.{id}'
+            )
+            ->leftJoin('event.tags', 'tags');
 
-        return $qb->select($qb->expr()->countDistinct('event.id'))
-            ->where('event.category = :category')
-            ->setParameter(':category', $category)
+        return $qb->select($tagTable->expr()->countDistinct('event.id'))
+            ->where(':tag = tags.id')
+            ->setParameter(':tag', $tag->getId())
             ->getQuery()
             ->getSingleScalarResult();
     }

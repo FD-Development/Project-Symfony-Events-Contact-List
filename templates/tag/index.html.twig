@@ -11,7 +11,7 @@
 
 
     <div>
-        <a href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}">
+        <a class="btn btn-warning" href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}">
             {{ 'action.create'|trans }}
         </a>
     </div>
@@ -22,7 +22,7 @@
             {{ knp_pagination_render(pagination) }}
         </div>
 
-        <table class="table table-striped">
+        <table class="table table-striped" style="width:auto; margin: 0 auto;" >
             <thead>
             <tr>
                 <th>{{ 'label.tag'|trans }}</th>

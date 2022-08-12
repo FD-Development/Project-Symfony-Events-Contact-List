@@ -27,7 +27,7 @@ class TagRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    public const PAGINATOR_ITEMS_PER_PAGE = 10;
+    public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
     public function __construct(ManagerRegistry $registry)
     {

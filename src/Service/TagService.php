@@ -7,6 +7,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Service\TagServiceInterface;
 use App\Repository\TagRepository;
 use App\Repository\EventRepository;
@@ -73,6 +74,23 @@ class TagService implements TagServiceInterface
         $this->tagRepository->delete($tag);
     }
 
+    /**
+     * Can Tag be deleted?
+     *
+     * @param Tag $tag Tag entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Tag $tag): bool
+    {
+        try {
+            $resultEvents = $this->eventRepository->countByTag($tag);
+
+            return !($resultEvents > 0);
+        } catch (NoResultException|NonUniqueResultException) {
+            return false;
+        }
+    }
 
     /**
      * Find by title.
