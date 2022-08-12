@@ -10,7 +10,7 @@
     <h1>{{ 'title.category_list'|trans }}</h1>
 
     <div>
-        <a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
+        <a  class="btn btn-warning" href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
             {{ 'action.create'|trans }}
         </a>
     </div>
@@ -21,7 +21,7 @@
             {{ knp_pagination_render(pagination) }}
         </div>
 
-        <table class="table table-striped">
+        <table class="table table-striped" style="width:auto; margin: 0 auto;">
             <thead>
             <tr>
                 <th>{{ 'label.category'|trans }}</th>
