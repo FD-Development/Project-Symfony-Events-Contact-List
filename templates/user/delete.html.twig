@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_delete' |trans }}
+{% endblock %}
+
+{% block body %}
+    {% if user is defined and user|length and user.id == app.user.id or is_granted('ROLE_ADMIN') %}
+        <h1>{{ 'title.user_delete'|trans }}</h1>
+        {{ form_start(form) }}
+        {% if false == form.vars.valid %}
+            {% include 'default/_single_alert_message.html.twig' with {
+                type: 'danger',
+                message: 'message.form_error'|trans,
+            }%}
+        {% elseif true == form.vars.valid %}
+            {% include 'default/_single_alert_message.html.twig' with {
+                type: 'succes',
+                message: 'message.deleted_successfully'|trans,
+            }%}
+        {% endif %}
+        {{ form_widget(form) }}
+        <div id="form-buttons">
+            <div class="form-group row float-sm-right">
+                <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary"/>
+            </div>
+        </div>
+        {{ form_end(form) }}
+        <div id="form-buttons">
+            <a href="{{  url('user_show', {id: app.user.id} ) }}" title=" {{ 'action.cancel' }}">
+                {{ 'action.cancel' }}
+            </a>
+        </div>
+    {% else %}
+        <p>
+            {{ 'message.page_not_available'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
