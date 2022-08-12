@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_create' |trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_create'|trans }}</h1>
+    {{ form_start(form) }}
+    {% if false == form.vars.valid %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'danger',
+            message: 'message.form_error'|trans,
+        }%}
+    {% elseif true == form.vars.valid %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'success',
+            message: 'message.user_success'|trans,
+        }%}
+    {% endif %}
+    {{ form_widget(form) }}
+    <div id="form-buttons">
+        <div class="form-group row float-sm-right">
+            <input type="submit" value="{{ 'action.register'|trans }}" class="btn btn-primary"/>
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <div id="form-buttons">
+        <a class="btn btn-outline-light" href="{{  url('app_login') }}" title=" {{ 'action.back_to_login' }}">
+            {{ 'action.login' }}
+        </a>
+    </div>
+{% endblock %}

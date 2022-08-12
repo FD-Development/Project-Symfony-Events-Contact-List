@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_list'|trans }}
+{% endblock %}
+
+
+
+{% block body %}
+    <h1>{{ 'title.user_list'|trans }}</h1>
+
+    <div>
+        {% include 'default/_flash_messages.html.twig' %}
+    </div>
+
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped" style="width:auto; margin: 0 auto;">
+            <thead>
+            <tr>
+                <th>{{ 'label.email'|trans }}</th>
+                <th>{{ 'label.role'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for user in pagination.items %}
+                <tr>
+                    <td>{{ user.email }}</td>
+
+                    {% if user.roles.1 is defined %}
+                    <td style="border: 3px black dotted; color: #98FB98;">{{ user.roles.1}}</td>
+                        {% else %}
+                    <td>{{ user.roles.0}}</td>
+                    {% endif %}
+
+                    <td>
+                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

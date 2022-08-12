@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -19,9 +22,70 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
+    /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in configuration files.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
+    public const PAGINATOR_ITEMS_PER_PAGE = 20;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('user');
+    }
+
+    /**
+     * Query all records.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select(
+                'user.id, user.email, user.roles'
+            );
+    }
+
+    /**
+     * Delete all records associated to the user.
+     *
+     *
+     */
+    public function DeleteAssociated(User $user): void
+    {
+        $queryBuilder = $this->getOrCreateQueryBuilder();
+        $queryBuilder
+            ->delete('App\Entity\Event', 'e')
+            ->where('e.author = :id')
+            ->setParameter('id', $user->getId());
+
+        $queryBuilder ->getQuery()->execute();
+
+        $queryBuilder
+            ->delete('App\Entity\Contact', 'c')
+            ->where('c.author = :id')
+            ->setParameter('id', $user->getId());
+
+        $queryBuilder ->getQuery()->execute();
+
     }
 
     public function add(User $entity, bool $flush = false): void
@@ -54,6 +118,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
 
         $this->add($user, true);
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param User $user Event entity
+     */
+    public function save(User $user): void
+    {
+        $this->_em->persist($user);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param User $user User entity
+     */
+    public function delete(User $user): void
+    {
+        $this->DeleteAssociated($user);
+
+        $this->_em->remove($user);
+        $this->_em->flush();
     }
 
 //    /**

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_details'|trans({'%id%': user.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    {% if user is defined and user|length and user.id == app.user.id or is_granted('ROLE_ADMIN') %}
+        <h1>{{ 'title.user_details'|trans({'%id%': user.id|default('')}) }}</h1>
+        <dl class="dl-vertical">
+            <dt>{{ 'label.email'|trans }}</dt>
+            <dd>{{  user.email }}</dd>
+        </dl>
+        <div>
+            <a class="btn btn-warning" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action.edit'|trans }}">
+                {{ 'action.edit'|trans }}
+            </a>
+            <a class="btn btn-danger" href="{{ url('user_delete', {id: user.id}) }}" title="{{ 'action.delete'|trans }}">
+                {{ 'action.delete'|trans }}
+            </a>
+        </div>
+    {% else %}
+        <p>
+            {{ 'message.page_not_available'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
