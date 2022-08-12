@@ -11,29 +11,27 @@
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  event.title }}</dd>
             <dt>{{ 'label.duration_from'|trans }}</dt>
-            <dd>{{ event.dateFrom|date("d.m.Y") }} [{{ event.timeFrom|date("H:i") }}]</dd>
+            <dd>{{ event.dateFrom|date("d.m.Y") }} [ {{ event.timeFrom|date("H:i") }} ]</dd>
             <dt>{{ 'label.duration_to'|trans }}</dt>
-            <dd>{{ event.dateTo|date("d.m.Y") }} [{{ event.timeTo|date("H:i") }}]</dd>
+            <dd>{{ event.dateTo|date("d.m.Y") }} [ {{ event.timeTo|date("H:i") }} ]</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  event.category.title }}</dd>
             <dt>{{ 'label.tags'|trans }}</dt>
             <dd>{{ event.tags|join(', ') }}</dd>
-            <dt>{{ 'label.description' }}</dt>
-            <dd>{{ event.description|trans}}</dd>
+            <dt>{{ 'label.description'|trans }}</dt>
+            <dd>{{ event.description}}</dd>
         </dl>
         <div>
-            <a href="{{ url('event_edit', {id: event.id}) }}" title="{{ 'action.edit'|trans }}">
+            <a class="btn btn-primary" href="{{ url('event_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+            <a class="btn btn-warning" href="{{ url('event_edit', {id: event.id}) }}" title="{{ 'action.edit'|trans }}">
                 {{ 'action.edit'|trans }}
             </a>
-            <a href="{{ url('event_delete', {id: event.id}) }}" title="{{ 'action.delete'|trans }}">
+            <a class="btn btn-danger" href="{{ url('event_delete', {id: event.id}) }}" title="{{ 'action.delete'|trans }}">
                 {{ 'action.delete'|trans }}
             </a>
         </div>
-        <p>
-            <a href="{{ url('event_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
-            </a>
-        </p>
     {% else %}
         <p>
             {{ 'message.record_not_found'|trans }}

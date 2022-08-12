@@ -66,9 +66,15 @@ class Event
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context, $payload)
     {
-        if ($this->getDateFrom() == $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo()){
+        if ($this->getDateFrom() === $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo())
+        {
             $context->buildViolation('message.form_event_time_violation')
                 ->atPath('time_to')
+                ->addViolation();
+        }
+        elseif ( $this->getDateFrom() > $this->getDateTo() ){
+            $context->buildViolation('message.form_event_time_violation')
+                ->atPath('date_to')
                 ->addViolation();
         }
     }

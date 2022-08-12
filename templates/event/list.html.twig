@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.event_list'|trans }}
+    {{ 'title.event_list_all'|trans }}
 {% endblock %}
 
 
@@ -9,22 +9,28 @@
 {% block body %}
     <h1>{{ 'title.event_list_all'|trans }}</h1>
 
-    <nav  class="navbar navbar-expand-lg bg-light">
-        <menu class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
+    <nav>
+        <ul class="events-submenu">
+            <li>
+                <a href="{{ url('event_create') }}" title="{{ 'action.create'|trans }}">
                     {{ 'action.create'|trans }}
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ url('event_index') }}" title="{{ 'title.event_main'|trans }}">
-                    {{ 'title.events_main'|trans }}
+            <li>
+                <a href="{{ url('event_index') }}" title="{{ 'title.event_main'|trans }}">
+                    {{ 'title.event_main'|trans }}
                 </a>
             </li>
-        </menu>
+        </ul>
     </nav>
 
-    <h2>{{ 'title.event_list'|trans }}</h2>
+    <div class="d-flex justify-content-between">
+        <h2>{{ 'title.event_list'|trans }}</h2>
+
+        <a style="align-self: center;" class="btn btn-warning btn-sm" href="{{ url('event_list') }}" title="{{ 'title.clear_filters'|trans }}">
+            {{ 'title.clear_filters'|trans }}
+        </a>
+    </div>
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -49,7 +55,7 @@
                 <tr>
                     <td>{{ event.dateFrom|date('d.m.Y') }}</td>
                     <td>{{ event.title }}</td>
-                    <td>{{ event.dateTo|date('d.m.Y') }}</td>
+                    <td class="date">{{ event.dateTo|date('d.m.Y') }}</td>
                     <td>
                         <a href="{{ url('event_list', {'filters.category_id' : event.category.id}) }}" title="{{ event.category.title }}">
                             {{ event.category.title }}
@@ -81,11 +87,6 @@
             {{ knp_pagination_render(pagination) }}
         </div>
 
-        <div>
-            <a href="{{ url('event_list') }}" title="{{ 'title.clear_filters'|trans }}">
-                {{ 'title.clear_filters'|trans }}
-            </a>
-        </div>
 
     {% else %}
         <p>
