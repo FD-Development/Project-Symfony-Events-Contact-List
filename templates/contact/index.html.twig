@@ -8,11 +8,15 @@
 
 {% block body %}
     <h1>{{ 'title.contact_list'|trans }}</h1>
-    <div>
-        <a href="{{ url('contact_create') }}" title="{{ 'action.create'|trans }}">
-            {{ 'action.create'|trans }}
-        </a>
-    </div>
+    <nav>
+    <ul class="events-submenu">
+        <li>
+            <a href="{{ url('contact_create') }}" title="{{ 'action.create'|trans }}">
+                {{ 'action.create'|trans }}
+            </a>
+        </li>
+    </ul>
+    </nav>
 
     <div>
         {% include 'default/_flash_messages.html.twig' %}
@@ -28,9 +32,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'contact.durationFrom') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.surname'|trans, 'contact.durationTo') }}</th>
-                <th>{{ 'label.email'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'contact.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.surname'|trans, 'contact.surname') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'contact.email') }}</th>
                 <th>{{ 'label.telephone'|trans }}</th>
                 <th>{{ 'label.category'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
