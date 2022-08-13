@@ -23,19 +23,21 @@ parameters:
     {% elseif true == form.vars.valid %}
         {% include 'default/_single_alert_message.html.twig' with {
             type: 'succes',
-            message: 'message.form_succes'|trans,
+            message: 'message.form_success'|trans,
         }%}
     {% endif %}
     {{ form_widget(form) }}
-    <div class="form-group row float-sm-right">
-        <input type="submit" value="{{ submit_label }}" class="btn btn-primary"/>
-    </div>
-    {% if back_to_list_path|default(false) %}
-        <div class="form-group row float-sm-left">
-            <a href="{{ url(back_to_list_path) }}" class="btn btn-link">
-                {{ 'action.back_to_list'|trans }}
-            </a>
+    <div id="form-buttons">
+        <div class="form-group row float-sm-right">
+            <input type="submit" value="{{ submit_label }}" class="btn btn-primary"/>
         </div>
+        {% if back_to_list_path|default(false) %}
+            <div class="form-group row float-sm-left">
+                <a href="{{ url(back_to_list_path) }}" class="btn btn-outline-light">
+                    {{ 'action.back_to_list'|trans }}
+                </a>
+            </div>
     {% endif %}
+    </div>
     {{ form_end(form) }}
 {% endblock %}
