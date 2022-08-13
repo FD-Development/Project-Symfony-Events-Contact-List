@@ -24,18 +24,16 @@
             <dd>{{ contact.note|trans}}</dd>
         </dl>
         <div>
-            <a href="{{ url('contact_edit', {id: contact.id}) }}" title="{{ 'action.edit'|trans }}">
+            <a class="btn btn-primary" href="{{ url('contact_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+            <a class="btn btn-warning" href="{{ url('contact_edit', {id: contact.id}) }}" title="{{ 'action.edit'|trans }}">
                 {{ 'action.edit'|trans }}
             </a>
-            <a href="{{ url('contact_delete', {id: contact.id}) }}" title="{{ 'action.delete'|trans }}">
+            <a class="btn btn-danger" href="{{ url('contact_delete', {id: contact.id}) }}" title="{{ 'action.delete'|trans }}">
                 {{ 'action.delete'|trans }}
             </a>
         </div>
-        <p>
-            <a href="{{ url('contact_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
-            </a>
-        </p>
     {% else %}
         <p>
             {{ 'message.record_not_found'|trans }}
