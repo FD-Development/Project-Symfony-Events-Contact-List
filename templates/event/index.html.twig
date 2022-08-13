@@ -78,6 +78,11 @@
         </a>
     </div>
 
+        <a style="align-self: center;" class="btn btn-warning btn-sm" href="{{ url('event_index') }}" title="{{ 'title.clear_filters'|trans }}">
+            {{ 'title.clear_filters'|trans }}
+        </a>
+    </div>
+
     {% if upcoming is defined and upcoming.items|length %}
 
         <table class="table table-striped">

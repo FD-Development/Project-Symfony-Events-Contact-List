@@ -32,6 +32,11 @@
         </a>
     </div>
 
+        <a style="align-self: center;" class="btn btn-warning btn-sm" href="{{ url('event_list') }}" title="{{ 'title.clear_filters'|trans }}">
+            {{ 'title.clear_filters'|trans }}
+        </a>
+    </div>
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
