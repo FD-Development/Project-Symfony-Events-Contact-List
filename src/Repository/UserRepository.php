@@ -34,13 +34,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
-
 
     /**
      * Get or create new query builder.
@@ -69,8 +68,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Delete all records associated to the user.
-     *
-     *
      */
     public function DeleteAssociated(User $user): void
     {
@@ -80,22 +77,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->where('e.author = :id')
             ->setParameter('id', $user->getId());
 
-        $queryBuilder ->getQuery()->execute();
+        $queryBuilder->getQuery()->execute();
 
         $queryBuilder
             ->delete('App\Entity\Contact', 'c')
             ->where('c.author = :id')
             ->setParameter('id', $user->getId());
 
-        $queryBuilder ->getQuery()->execute();
-
+        $queryBuilder->getQuery()->execute();
     }
 
     /**
      * Add entity.
-     *
-     * @param User $entity
-     * @param bool $flush
      */
     public function add(User $entity, bool $flush = false): void
     {
@@ -108,8 +101,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Remove entity.
-     * @param User $entity
-     * @param bool $flush
      */
     public function remove(User $entity, bool $flush = false): void
     {

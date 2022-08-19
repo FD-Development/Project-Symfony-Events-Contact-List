@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Tag;
-use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,7 +29,7 @@ class TagRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -64,9 +63,6 @@ class TagRepository extends ServiceEntityRepository
 
     /**
      * Add entity.
-     *
-     * @param Tag $entity
-     * @param bool $flush
      */
     public function add(Tag $entity, bool $flush = false): void
     {
@@ -100,10 +96,7 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Remove entity
-     *
-     * @param Tag $entity
-     * @param bool $flush
+     * Remove entity.
      */
     public function remove(Tag $entity, bool $flush = false): void
     {
@@ -115,23 +108,22 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Finds one Tag by given id
+     * Finds one Tag by given id.
      *
      * @param $value
-     * @return Tag|null
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneById($value): ?Tag
     {
         $queryBuilder = $this->queryAll();
+
         return $queryBuilder
             ->andWhere('tag.id = :id')
             ->setParameter('id', $value)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
 
 //    /**
 //     * @return Tag[] Returns an array of Tag objects

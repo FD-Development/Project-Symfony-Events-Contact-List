@@ -27,6 +27,5 @@ interface UserServiceInterface
 
     public function delete(User $user): void;
 
-    #public function update(User $user): void;
-
+    // public function update(User $user): void;
 }

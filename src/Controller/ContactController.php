@@ -47,7 +47,8 @@ class ContactController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        name: 'contact_index', methods: 'GET'
+        name: 'contact_index',
+        methods: 'GET'
     )]
     public function index(Request $request): Response
     {
@@ -59,19 +60,23 @@ class ContactController extends AbstractController
     }
 
     /**
-     * Show action
+     * Show action.
      *
      * @param Contact $contact Contact entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}', name: 'contact_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
+        '/{id}',
+        name: 'contact_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
     )]
     public function show(Contact $contact): Response
     {
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
     }
+
     /**
      * Create action.
      *
@@ -80,7 +85,9 @@ class ContactController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-         '/create', name: 'contact_create', methods: 'GET|POST',
+        '/create',
+        name: 'contact_create',
+        methods: 'GET|POST',
     )]
     public function create(Request $request): Response
     {
@@ -104,20 +111,24 @@ class ContactController extends AbstractController
         }
 
         return $this->render(
-            'contact/create.html.twig', ['form' => $form->createView()]
+            'contact/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Contact $contact Contact entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit', name: 'contact_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT'
+        '/{id}/edit',
+        name: 'contact_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
     )]
     public function edit(Request $request, Contact $contact): Response
     {
@@ -143,20 +154,24 @@ class ContactController extends AbstractController
         }
 
         return $this->render(
-            'contact/edit.html.twig', ['form' => $form->createView(), 'contact' => $contact]
+            'contact/edit.html.twig',
+            ['form' => $form->createView(), 'contact' => $contact]
         );
     }
 
     /**
-     * Delete Action
+     * Delete Action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Contact $contact Contact entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete', name: 'contact_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
+        '/{id}/delete',
+        name: 'contact_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, Contact $contact): Response
     {
@@ -182,7 +197,8 @@ class ContactController extends AbstractController
         }
 
         return $this->render(
-            'contact/delete.html.twig', ['form' => $form->createView(), 'contact' => $contact]
+            'contact/delete.html.twig',
+            ['form' => $form->createView(), 'contact' => $contact]
         );
     }
 }

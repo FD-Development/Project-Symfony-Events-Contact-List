@@ -7,7 +7,6 @@
 namespace App\Service;
 
 use App\Entity\Tag;
-use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -41,6 +40,7 @@ interface TagServiceInterface
      * Can Tag be deleted?
      *
      * @param Tag $tag Tag entity
+     *
      * @return bool Result
      */
     public function canBeDeleted(Tag $tag): bool;

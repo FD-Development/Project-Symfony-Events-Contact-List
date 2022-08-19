@@ -8,10 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use DateTime;
 
 /**
- * Event entity
+ * Event entity.
  */
 #[ORM\Table(name: 'event')]
 #[ORM\Entity(repositoryClass: EventRepository::class)]
@@ -42,12 +41,11 @@ class Event
     #[Assert\Length(max: 675)]
     private ?string $description;
 
-
     /**
      * @var Category Associated Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\JoinColumn(nullable: false)]
     #[Assert\Type(Category::class)]
     #[Assert\NotBlank]
     private Category $category;
@@ -56,7 +54,7 @@ class Event
      * @var Collection<Tag> Associated Tags
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\JoinColumn(nullable: false)]
     #[ORM\JoinTable(name: 'event_tags')]
     #[Assert\Valid]
     private Collection $tags;
@@ -65,7 +63,7 @@ class Event
      * @var User Associated User
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private User $author;
@@ -82,7 +80,7 @@ class Event
      */
     #[ORM\Column(type: 'date')]
     #[Assert\Type('DateTime')]
-    #[Assert\GreaterThanOrEqual(propertyPath:'dateFrom')]
+    #[Assert\GreaterThanOrEqual(propertyPath: 'dateFrom')]
     private \DateTimeInterface $dateFrom;
 
     /**
@@ -101,22 +99,16 @@ class Event
 
     /**
      * Form validation.
-     * Prevents the user to create an event which ends before it starts
-     *
-     * @param ExecutionContextInterface $context
-     *
-     * @return void
+     * Prevents the user to create an event which ends before it starts.
      */
     #[Assert\Callback]
-    public function validate(ExecutionContextInterface $context) :void
+    public function validate(ExecutionContextInterface $context): void
     {
-        if ($this->getDateFrom() === $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo())
-        {
+        if ($this->getDateFrom() === $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo()) {
             $context->buildViolation('message.form_event_time_violation')
                 ->atPath('time_to')
                 ->addViolation();
-        }
-        elseif ( $this->getDateFrom() > $this->getDateTo() ){
+        } elseif ($this->getDateFrom() > $this->getDateTo()) {
             $context->buildViolation('message.form_event_time_violation')
                 ->atPath('date_to')
                 ->addViolation();

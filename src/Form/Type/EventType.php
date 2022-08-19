@@ -7,7 +7,6 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\Tag;
 use App\Entity\Event;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -24,11 +23,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class EventType extends AbstractType
 {
-
     /**
      * Tags data transformer.
-     *
-     * @var TagsDataTransformer
      */
     private TagsDataTransformer $tagsDataTransformer;
 
@@ -61,11 +57,12 @@ class EventType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
 
         $builder->add(
-                'date_from',
-                DateType::class,
+            'date_from',
+            DateType::class,
             [
                 'label' => 'label.date_from',
                 'required' => true,
@@ -140,8 +137,8 @@ class EventType extends AbstractType
             [
                 'label' => 'label.description',
                 'required' => false,
-            ]);
-
+            ]
+        );
     }
 
     /**
@@ -157,8 +154,6 @@ class EventType extends AbstractType
      *
      * The block prefix defaults to the underscored short class name with
      * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
-     *
-     * @return string
      */
     public function getBlockPrefix(): string
     {

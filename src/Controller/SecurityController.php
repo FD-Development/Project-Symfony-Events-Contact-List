@@ -8,14 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- *  Class SecurityController
+ *  Class SecurityController.
  */
 class SecurityController extends AbstractController
 {
     /**
-     * Login action
-     *
-     * @param AuthenticationUtils $authenticationUtils
+     * Login action.
      *
      * @return Response HTTP response
      */
@@ -35,11 +33,8 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * Logout action
-     *
-     * @return void
+     * Logout action.
      */
-
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

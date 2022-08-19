@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * User service.
  */
@@ -30,8 +29,8 @@ class UserService implements UserServiceInterface
     /**
      * Constructor.
      *
-     * @param UserRepository $userRepository User repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param UserRepository     $userRepository User repository
+     * @param PaginatorInterface $paginator      Paginator
      */
     public function __construct(UserRepository $userRepository, PaginatorInterface $paginator)
     {
@@ -64,6 +63,4 @@ class UserService implements UserServiceInterface
     {
         $this->userRepository->delete($user);
     }
-
-
 }

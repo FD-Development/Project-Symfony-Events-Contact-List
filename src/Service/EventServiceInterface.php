@@ -9,7 +9,6 @@ namespace App\Service;
 use App\Entity\Event;
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -21,9 +20,9 @@ interface EventServiceInterface
     /**
      * Get paginated list for specified user.
      *
-     * @param int $page Page number
-     * @param User|UserInterface $author Author
-     * @param array $filters Array of potential filters
+     * @param int                $page    Page number
+     * @param User|UserInterface $author  Author
+     * @param array              $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -32,10 +31,10 @@ interface EventServiceInterface
     /**
      * Get paginated list of events that are in specified date.
      *
-     * @param int $page Page number
-     * @param User|UserInterface $author Author
-     * @param DateTime $date Date to search by
-     * @param array $filters Array of potential filters
+     * @param int                $page    Page number
+     * @param User|UserInterface $author  Author
+     * @param DateTime           $date    Date to search by
+     * @param array              $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -44,10 +43,10 @@ interface EventServiceInterface
     /**
      * Get paginated list of events that start after specified date.
      *
-     * @param int $page Page number
-     * @param User|UserInterface $author Author
-     * @param DateTime $date Date to search by
-     * @param array $filters Array of potential filters
+     * @param int                $page    Page number
+     * @param User|UserInterface $author  Author
+     * @param DateTime           $date    Date to search by
+     * @param array              $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -57,6 +56,5 @@ interface EventServiceInterface
 
     public function delete(Event $event): void;
 
-    #public function update(Event $event): void;
-
+    // public function update(Event $event): void;
 }

@@ -27,6 +27,5 @@ interface ContactServiceInterface
 
     public function delete(Contact $contact): void;
 
-    #public function update(Contact $contact): void;
-
+    // public function update(Contact $contact): void;
 }

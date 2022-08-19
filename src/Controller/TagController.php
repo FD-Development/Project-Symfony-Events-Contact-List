@@ -47,7 +47,8 @@ class TagController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        name: 'tag_index', methods: 'GET'
+        name: 'tag_index',
+        methods: 'GET'
     )]
     public function index(Request $request): Response
     {
@@ -59,14 +60,17 @@ class TagController extends AbstractController
     }
 
     /**
-     * Show action
+     * Show action.
      *
      * @param Tag $tag Tag entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}', name: 'tag_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
+        '/{id}',
+        name: 'tag_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
     )]
     public function show(Tag $tag): Response
     {
@@ -74,14 +78,16 @@ class TagController extends AbstractController
     }
 
     /**
-     * Create action
+     * Create action.
      *
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/create', name: 'tag_create', methods: 'GET|POST',
+        '/create',
+        name: 'tag_create',
+        methods: 'GET|POST',
     )]
     public function create(Request $request): Response
     {
@@ -99,20 +105,24 @@ class TagController extends AbstractController
         }
 
         return $this->render(
-            'tag/create.html.twig', ['form' => $form->createView()]
+            'tag/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit', name: 'tag_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT'
+        '/{id}/edit',
+        name: 'tag_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
     )]
     public function edit(Request $request, Tag $tag): Response
     {
@@ -138,24 +148,28 @@ class TagController extends AbstractController
         }
 
         return $this->render(
-            'tag/edit.html.twig', ['form' => $form->createView(), 'tag' => $tag]
+            'tag/edit.html.twig',
+            ['form' => $form->createView(), 'tag' => $tag]
         );
     }
 
     /**
-     * Delete action
+     * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Tag $tag Tag entity
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
+        '/{id}/delete',
+        name: 'tag_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, Tag $tag): Response
     {
-        if(!$this->tagService->canBeDeleted($tag)) {
+        if (!$this->tagService->canBeDeleted($tag)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.tag_contains_events')
@@ -186,7 +200,8 @@ class TagController extends AbstractController
         }
 
         return $this->render(
-            'tag/delete.html.twig', ['form' => $form->createView(), 'tag' => $tag]
+            'tag/delete.html.twig',
+            ['form' => $form->createView(), 'tag' => $tag]
         );
     }
 }

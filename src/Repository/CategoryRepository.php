@@ -29,7 +29,7 @@ class CategoryRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -62,11 +62,7 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Add entity
-     *
-     * @param Category $entity
-     * @param bool $flush
-     *  
+     * Add entity.
      */
     public function add(Category $entity, bool $flush = false): void
     {
@@ -101,9 +97,6 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Remove entity.
-     * @param Category $entity
-     * @param bool $flush
-     *  
      */
     public function remove(Category $entity, bool $flush = false): void
     {
@@ -115,24 +108,22 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find One category by given id
+     * Find One category by given id.
      *
      * @param $value
-     * @return Category|null
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneById($value): ?Category
     {
         $queryBuilder = $this->queryAll();
+
         return $queryBuilder
             ->andWhere('category.id = :id')
             ->setParameter('id', $value)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
-
-
 
 //    /**
 //     * @return Category[] Returns an array of Category objects

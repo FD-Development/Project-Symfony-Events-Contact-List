@@ -47,11 +47,11 @@ class EventController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        name: 'event_index', methods: 'GET'
+        name: 'event_index',
+        methods: 'GET'
     )]
     public function index(Request $request): Response
     {
-
         $currentDate = new \DateTime('now');
         $filters = $this->getFilters($request);
 
@@ -61,7 +61,7 @@ class EventController extends AbstractController
             $currentDate,
             []
         );
-        #Filtry specjalnie nie są przesyłane do aktywnych zadań.
+        // Filtry specjalnie nie są przesyłane do aktywnych zadań.
 
         $upcoming = $this->eventService->getUpcomingEvents(
             $request->query->getInt('upcoming_page', 1),
@@ -74,7 +74,7 @@ class EventController extends AbstractController
             'event/index.html.twig',
             [
                 'pagination' => $paginationActive,
-                'upcoming' => $upcoming
+                'upcoming' => $upcoming,
             ]
         );
     }
@@ -87,7 +87,9 @@ class EventController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/list', name: 'event_list', methods: 'GET'
+        '/list',
+        name: 'event_list',
+        methods: 'GET'
     )]
     public function list(Request $request): Response
     {
@@ -115,7 +117,10 @@ class EventController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}', name: 'event_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
+        '/{id}',
+        name: 'event_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
     )]
     public function show(Event $event): Response
     {
@@ -139,7 +144,9 @@ class EventController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-         '/create', name: 'event_create', methods: 'GET|POST',
+        '/create',
+        name: 'event_create',
+        methods: 'GET|POST',
     )]
     public function create(Request $request): Response
     {
@@ -163,20 +170,24 @@ class EventController extends AbstractController
         }
 
         return $this->render(
-            'event/create.html.twig', ['form' => $form->createView()]
+            'event/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Event $event Event entity
+     * @param Request $request HTTP request
+     * @param Event   $event   Event entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit', name: 'event_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT'
+        '/{id}/edit',
+        name: 'event_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
     )]
     public function edit(Request $request, Event $event): Response
     {
@@ -202,20 +213,24 @@ class EventController extends AbstractController
         }
 
         return $this->render(
-            'event/edit.html.twig', ['form' => $form->createView(), 'event' => $event]
+            'event/edit.html.twig',
+            ['form' => $form->createView(), 'event' => $event]
         );
     }
 
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Event $event Event entity
+     * @param Request $request HTTP request
+     * @param Event   $event   Event entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete', name: 'event_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
+        '/{id}/delete',
+        name: 'event_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, Event $event): Response
     {
@@ -241,7 +256,8 @@ class EventController extends AbstractController
         }
 
         return $this->render(
-            'event/delete.html.twig', ['form' => $form->createView(), 'event' => $event]
+            'event/delete.html.twig',
+            ['form' => $form->createView(), 'event' => $event]
         );
     }
 

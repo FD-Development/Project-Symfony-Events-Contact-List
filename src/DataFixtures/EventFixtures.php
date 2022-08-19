@@ -7,9 +7,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Event;
-use App\Entity\Category;
-use App\Entity\Tag;
-use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -30,19 +27,18 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
             $event->setTitle($this->faker->sentence(3));
 
             $startDuration = $this->faker->dateTimeBetween('-4 days', '+11  days');
-            $event->setDateFrom( $startDuration );
-            $event->setTimeFrom( $startDuration );
+            $event->setDateFrom($startDuration);
+            $event->setTimeFrom($startDuration);
             $event->setdateTo(
-                 $this->faker->dateTimeInInterval($startDuration , '+3 days')
+                $this->faker->dateTimeInInterval($startDuration, '+3 days')
             );
             $event->setTimeTo(
-                $this->faker->dateTimeInInterval($startDuration , '+3 days')
+                $this->faker->dateTimeInInterval($startDuration, '+3 days')
             );
             $event->setDescription($this->faker->sentence);
 
             $category = $this->getRandomReference('categories');
             $event->setCategory($category);
-
 
             $tag = $this->getRandomReference('tags');
             $event->addTag($tag);

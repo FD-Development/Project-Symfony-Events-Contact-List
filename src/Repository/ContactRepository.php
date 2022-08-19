@@ -30,7 +30,7 @@ class ContactRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -73,6 +73,7 @@ class ContactRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
     /**
      * Save entity.
      *
@@ -96,9 +97,7 @@ class ContactRepository extends ServiceEntityRepository
     }
 
     /**
-     * Remove entity
-     * @param Contact $entity
-     * @param bool $flush
+     * Remove entity.
      */
     public function remove(Contact $entity, bool $flush = false): void
     {

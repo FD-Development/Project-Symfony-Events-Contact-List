@@ -1,19 +1,16 @@
 <?php
 
-
 /**
  * Event service.
  */
 
 namespace App\Service;
 
-use App\Service\EventServiceInterface;
 use App\Repository\EventRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Event;
- use App\Entity\User;
-use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
+use App\Entity\User;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -45,10 +42,10 @@ class EventService implements EventServiceInterface
     /**
      * Constructor.
      *
-     * @param EventRepository $eventRepository Event repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param EventRepository          $eventRepository Event repository
+     * @param PaginatorInterface       $paginator       Paginator
      * @param CategoryServiceInterface $categoryService Category service interface
-     * @param TagServiceInterface $tagService Tag service interface
+     * @param TagServiceInterface      $tagService      Tag service interface
      *
      * #
      */
@@ -67,15 +64,16 @@ class EventService implements EventServiceInterface
     /**
      * Get paginated list for specified user.
      *
-     * @param int $page Page number
-     * @param User|UserInterface $author Author
-     * @param array $filters Array of potential filters
+     * @param int                $page    Page number
+     * @param User|UserInterface $author  Author
+     * @param array              $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page, User|UserInterface $author, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
+
         return $this->paginator->paginate(
             $this->eventRepository->queryByAuthor($author, $filters),
             $page,
@@ -86,16 +84,16 @@ class EventService implements EventServiceInterface
     /**
      * Get paginated list of events that are in specified date.
      *
-     * @param int $page Page number
-     * @param User|UserInterface $author Author
-     * @param DateTime $date Date to search by
-     * @param array $filters Array of potential filters
+     * @param int                $page    Page number
+     * @param User|UserInterface $author  Author
+     * @param DateTime           $date    Date to search by
+     * @param array              $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getEventsByDate(int $page, User|UserInterface $author, DateTime $date, array $filters = [] ): PaginationInterface
+    public function getEventsByDate(int $page, User|UserInterface $author, DateTime $date, array $filters = []): PaginationInterface
     {
-        $date = date_format( $date, 'Y-m-d');
+        $date = date_format($date, 'Y-m-d');
         $filters = $this->prepareFilters($filters);
 
         return $this->paginator->paginate(
@@ -108,27 +106,27 @@ class EventService implements EventServiceInterface
     /**
      * Get paginated list of events that start after specified date.
      *
-     * @param int $page Page number
-     * @param User|UserInterface $author Author
-     * @param DateTime $date Date to search by
-     * @param array $filters Array of potential filters
+     * @param int                $page    Page number
+     * @param User|UserInterface $author  Author
+     * @param DateTime           $date    Date to search by
+     * @param array              $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getUpcomingEvents(int $page, User|UserInterface $author, DateTime $date, array $filters = [] ): PaginationInterface
+    public function getUpcomingEvents(int $page, User|UserInterface $author, DateTime $date, array $filters = []): PaginationInterface
     {
-        $date = date_format( $date, 'Y-m-d');
+        $date = date_format($date, 'Y-m-d');
         $filters = $this->prepareFilters($filters);
 
         return $this->paginator->paginate(
-            $this->eventRepository->queryUpcoming($author , $date , $filters),
+            $this->eventRepository->queryUpcoming($author, $date, $filters),
             $page,
             EventRepository::PAGINATOR_ITEMS_PER_PAGE,
-            array(
+            [
                 'pageParameterName' => 'upcoming_page',
                 'sortFieldParameterName' => 'sort1',
         'sortDirectionParameterName' => 'direction1',
-            )
+            ]
         );
     }
 
@@ -180,5 +178,4 @@ class EventService implements EventServiceInterface
 
         return $resultFilters;
     }
-
 }

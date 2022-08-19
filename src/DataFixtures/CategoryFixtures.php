@@ -8,7 +8,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 
-
 /**
  * Class CategoryFixtures.
  *

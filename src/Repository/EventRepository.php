@@ -7,11 +7,7 @@ use App\Entity\Category;
 use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\Query\ResultSetMapping;
-use Doctrine\ORM\NativeQuery;
-use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -36,7 +32,7 @@ class EventRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -74,7 +70,7 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records by specific user.
      *
-     * @param User $user    User Entity
+     * @param User  $user   User Entity
      * @param array $filter Filters array
      *
      * @return QueryBuilder Query builder
@@ -98,44 +94,47 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records that contain specified date.
      *
-     * @param User $user    User Entity
-     * @param string $date  Date string
-     * @param array $filter Filters array
+     * @param User   $user   User Entity
+     * @param string $date   Date string
+     * @param array  $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryByDate(User $user, string $date, array $filter = []) :QueryBuilder
+    public function queryByDate(User $user, string $date, array $filter = []): QueryBuilder
     {
         $queryBuilder = $this->queryByAuthor($user, $filter);
         $queryBuilder
-            ->andWhere($queryBuilder->expr()->between(
+            ->andWhere(
+                $queryBuilder->expr()->between(
                 ':date',
                 'event.dateFrom',
                 'event.dateTo'
             )
             )
             ->orderBy('event.dateFrom,event.timeFrom', 'DESC')
-            ->setParameter('date', $date );
+            ->setParameter('date', $date);
+
         return $queryBuilder;
     }
 
     /**
      * Query all records that start in the after the specified date.
      *
-     * @param User $user    User Entity
-     * @param string $date  Date string
-     * @param array $filter Filters array
+     * @param User   $user   User Entity
+     * @param string $date   Date string
+     * @param array  $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryUpcoming(User $user, string $date, array $filter = []) :QueryBuilder
+    public function queryUpcoming(User $user, string $date, array $filter = []): QueryBuilder
     {
         $queryBuilder = $this->queryByAuthor($user, $filter);
 
         $queryBuilder
             ->andWhere('event.dateFrom > :date')
             ->orderBy('event.dateFrom,event.timeFrom', 'DESC')
-            ->setParameter('date', $date );
+            ->setParameter('date', $date);
+
         return $queryBuilder;
     }
 
@@ -228,10 +227,10 @@ class EventRepository extends ServiceEntityRepository
     {
         $qb = $this->getOrCreateQueryBuilder();
         $tagTable = $qb;
-        $tagTable ->select(
-                'partial event.{id, author}',
-                'partial tags.{id}'
-            )
+        $tagTable->select(
+            'partial event.{id, author}',
+            'partial tags.{id}'
+        )
             ->leftJoin('event.tags', 'tags');
 
         return $qb->select($tagTable->expr()->countDistinct('event.id'))

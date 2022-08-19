@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use function Symfony\Component\String\s;
 
 /**
  * Class UserController.
@@ -40,8 +39,9 @@ class UserController extends AbstractController
 
     /**
      * Constructor.
-     * @param UserServiceInterface $userService User service
-     * @param TranslatorInterface $translation Translation interaface
+     *
+     * @param UserServiceInterface        $userService    User service
+     * @param TranslatorInterface         $translation    Translation interaface
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translation, UserPasswordHasherInterface $passwordHasher)
@@ -59,7 +59,8 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        name: 'user_index', methods: 'GET'
+        name: 'user_index',
+        methods: 'GET'
     )]
     #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request): Response
@@ -72,18 +73,21 @@ class UserController extends AbstractController
     }
 
     /**
-     * Show action
+     * Show action.
      *
      * @param User $user User entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}', name: 'user_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
+        '/{id}',
+        name: 'user_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
     )]
     public function show(User $user): Response
     {
-            return $this->render('user/show.html.twig', ['user' => $user]);
+        return $this->render('user/show.html.twig', ['user' => $user]);
     }
 
     /**
@@ -94,7 +98,9 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/create', name: 'user_create', methods: 'GET|POST',
+        '/create',
+        name: 'user_create',
+        methods: 'GET|POST',
     )]
     public function create(Request $request): Response
     {
@@ -120,20 +126,24 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            'user/create.html.twig', ['form' => $form->createView()]
+            'user/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT'
+        '/{id}/edit',
+        name: 'user_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
     )]
     public function edit(Request $request, User $user): Response
     {
@@ -155,27 +165,31 @@ class UserController extends AbstractController
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('user_show',['id' => $user->getId() ]);
+            return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
         }
 
         return $this->render(
-            'user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]
+            'user/edit.html.twig',
+            ['form' => $form->createView(), 'user' => $user]
         );
     }
 
     /**
-     * Delete action
+     * Delete action.
+     *
      * @param Request $request HTTP request
-     * @param User $user User Entity
+     * @param User    $user    User Entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
+        '/{id}/delete',
+        name: 'user_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, User $user): Response
     {
-
         $form = $this->createForm(
             UserType::class,
             $user,
@@ -194,18 +208,16 @@ class UserController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            if ( $this->getUser()->getRoles()[2] == 'ROLE_ADMIN') {
-            return $this->redirectToRoute('user_index');
-            }
-            else {
+            if ('ROLE_ADMIN' == $this->getUser()->getRoles()[2]) {
+                return $this->redirectToRoute('user_index');
+            } else {
                 return $this->redirectToRoute('app_login');
             }
-
         }
 
         return $this->render(
-            'user/delete.html.twig', ['form' => $form->createView(), 'user' => $user]
+            'user/delete.html.twig',
+            ['form' => $form->createView(), 'user' => $user]
         );
     }
-
 }

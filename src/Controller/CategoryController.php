@@ -47,7 +47,8 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        name: 'category_index', methods: 'GET'
+        name: 'category_index',
+        methods: 'GET'
     )]
     public function index(Request $request): Response
     {
@@ -59,14 +60,17 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Show action
+     * Show action.
      *
      * @param Category $category Category entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}', name: 'category_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
+        '/{id}',
+        name: 'category_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
     )]
     public function show(Category $category): Response
     {
@@ -74,14 +78,16 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * Create action
+     * Create action.
      *
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/create', name: 'category_create', methods: 'GET|POST',
+        '/create',
+        name: 'category_create',
+        methods: 'GET|POST',
     )]
     public function create(Request $request): Response
     {
@@ -99,7 +105,8 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'category/create.html.twig', ['form' => $form->createView()]
+            'category/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 
@@ -112,7 +119,10 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT'
+        '/{id}/edit',
+        name: 'category_edit',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|PUT'
     )]
     public function edit(Request $request, Category $category): Response
     {
@@ -138,18 +148,22 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'category/edit.html.twig', ['form' => $form->createView(), 'category' => $category]
+            'category/edit.html.twig',
+            ['form' => $form->createView(), 'category' => $category]
         );
     }
 
     /**
-     * @param Request $request HTTP request
+     * @param Request  $request  HTTP request
      * @param Category $category Category Enitity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
+        '/{id}/delete',
+        name: 'category_delete',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET|DELETE'
     )]
     public function delete(Request $request, Category $category): Response
     {
@@ -184,7 +198,8 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'category/delete.html.twig', ['form' => $form->createView(), 'category' => $category]
+            'category/delete.html.twig',
+            ['form' => $form->createView(), 'category' => $category]
         );
     }
 }

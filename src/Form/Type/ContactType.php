@@ -42,7 +42,8 @@ class ContactType extends AbstractType
                 'label' => 'label.name',
                 'required' => true,
                 'attr' => ['max_length' => 155],
-            ]);
+            ]
+        );
         $builder->add(
             'surname',
             TextType::class,
@@ -50,10 +51,11 @@ class ContactType extends AbstractType
                 'label' => 'label.surname',
                 'required' => false,
                 'attr' => ['max_length' => 155],
-            ]);
+            ]
+        );
         $builder->add(
-                'telephone',
-                TelType::class,
+            'telephone',
+            TelType::class,
             [
                 'label' => 'label.telephone',
                 'required' => false,
@@ -98,7 +100,8 @@ class ContactType extends AbstractType
             [
                 'label' => 'label.note',
                 'required' => false,
-            ]);
+            ]
+        );
     }
 
     /**
@@ -114,8 +117,6 @@ class ContactType extends AbstractType
      *
      * The block prefix defaults to the underscored short class name with
      * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
-     *
-     * @return string
      */
     public function getBlockPrefix(): string
     {

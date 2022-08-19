@@ -1,13 +1,11 @@
 <?php
 
-
 /**
  * Category service.
  */
 
 namespace App\Service;
 
-use App\Service\CategoryServiceInterface;
 use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
 use App\Repository\ContactRepository;
@@ -44,7 +42,7 @@ class CategoryService implements CategoryServiceInterface
      * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EventRepository $eventRepository, ContactRepository $contactRepository)
     {
@@ -80,7 +78,6 @@ class CategoryService implements CategoryServiceInterface
         $this->categoryRepository->delete($category);
     }
 
-
     /**
      * Can Category be deleted?
      *
@@ -113,5 +110,4 @@ class CategoryService implements CategoryServiceInterface
     {
         return $this->categoryRepository->findOneById($id);
     }
-
 }

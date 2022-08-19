@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Tag entity
+ * Tag entity.
  */
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
@@ -18,7 +18,7 @@ class Tag
     private int $id;
 
     #[ORM\Column(type: 'string', length: 65)]
-    #[Assert\Length(min:2, max:65)]
+    #[Assert\Length(min: 2, max: 65)]
     private string $title;
 
     public function getId(): ?int
@@ -38,7 +38,8 @@ class Tag
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->title;
     }
 }

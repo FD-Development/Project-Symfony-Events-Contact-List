@@ -7,7 +7,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contact;
-use App\Entity\Category;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -37,7 +36,6 @@ class ContactFixtures extends AbstractBaseFixtures implements DependentFixtureIn
 
             $author = $this->getRandomReference('users');
             $contact->setAuthor($author);
-
 
             $this->manager->persist($contact);
 

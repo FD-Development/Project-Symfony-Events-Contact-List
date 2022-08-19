@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
 
 /**
- * Contact entity
+ * Contact entity.
  */
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -78,7 +78,7 @@ class Contact
      * @var User Associated User
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable:false)]
+    #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private User $author;
@@ -141,7 +141,7 @@ class Contact
         return $this->birthdate;
     }
 
-    public function setBirthdate(?\DateTime $birthdate): self
+    public function setBirthdate(?DateTime $birthdate): self
     {
         $this->birthdate = $birthdate;
 
@@ -172,16 +172,12 @@ class Contact
         return $this;
     }
 
-    /**
-     * @return User|null
-     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
     /**
-     * @param User|null $author
      * @return $this
      */
     public function setAuthor(?User $author): self

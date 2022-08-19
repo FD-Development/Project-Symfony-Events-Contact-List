@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class UserType.
@@ -37,7 +36,7 @@ class UserType extends AbstractType
             EmailType::class,
             [
                 'label' => 'label.email',
-                'required' => true
+                'required' => true,
             ]
         );
 
@@ -46,12 +45,11 @@ class UserType extends AbstractType
             'invalid_message' => 'message.password_match',
             'options' => ['attr' => ['class' => 'password-field']],
             'required' => true,
-            'first_options'  => ['label' => 'label.password'],
+            'first_options' => ['label' => 'label.password'],
             'second_options' => ['label' => 'label.password_repeat'],
         ]);
-
     }
-#The password fields must match.
+// The password fields must match.
 
     /**
      * Configures the options for this type.
@@ -66,8 +64,6 @@ class UserType extends AbstractType
      *
      * The block prefix defaults to the underscored short class name with
      * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
-     *
-     * @return string
      */
     public function getBlockPrefix(): string
     {

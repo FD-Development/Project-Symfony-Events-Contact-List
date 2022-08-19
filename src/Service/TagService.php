@@ -1,14 +1,11 @@
 <?php
 
-
 /**
  * Tag service.
  */
 
 namespace App\Service;
 
-use App\Entity\User;
-use App\Service\TagServiceInterface;
 use App\Repository\TagRepository;
 use App\Repository\EventRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -38,8 +35,8 @@ class TagService implements TagServiceInterface
     /**
      * Constructor.
      *
-     * @param TagRepository $tagRepository Tag repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param TagRepository      $tagRepository Tag repository
+     * @param PaginatorInterface $paginator     Paginator
      */
     public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, EventRepository $eventRepository)
     {
@@ -117,6 +114,4 @@ class TagService implements TagServiceInterface
     {
         return $this->tagRepository->findOneById($id);
     }
-
-
 }

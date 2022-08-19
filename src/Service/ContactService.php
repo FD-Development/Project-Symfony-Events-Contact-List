@@ -1,13 +1,11 @@
 <?php
 
-
 /**
  * Contact service.
  */
 
 namespace App\Service;
 
-use App\Service\ContactServiceInterface;
 use App\Repository\ContactRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -31,8 +29,8 @@ class ContactService implements ContactServiceInterface
     /**
      * Constructor.
      *
-     * @param ContactRepository $contactRepository Contact repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param ContactRepository  $contactRepository Contact repository
+     * @param PaginatorInterface $paginator         Paginator
      */
     public function __construct(ContactRepository $contactRepository, PaginatorInterface $paginator)
     {
@@ -77,6 +75,4 @@ class ContactService implements ContactServiceInterface
     {
         return $this->tagRepository->findOneByTitle($title);
     }
-
-
 }
