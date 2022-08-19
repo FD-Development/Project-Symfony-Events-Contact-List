@@ -26,12 +26,17 @@ class EventController extends AbstractController
     private EventServiceInterface $eventService;
 
     /**
+     * Translator Interface.
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * Constructor.
      */
-    public function __construct(EventServiceInterface $eventService, TranslatorInterface $translation)
+    public function __construct(EventServiceInterface $eventService, TranslatorInterface $translator)
     {
         $this->eventService = $eventService;
-        $this->translator = $translation;
+        $this->translator = $translator;
     }
 
     /**
@@ -53,7 +58,8 @@ class EventController extends AbstractController
         $paginationActive = $this->eventService->getEventsByDate(
             $request->query->getInt('page', 1),
             $this->getUser(),
-            $currentDate
+            $currentDate,
+            []
         );
         #Filtry specjalnie nie są przesyłane do aktywnych zadań.
 

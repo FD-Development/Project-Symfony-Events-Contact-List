@@ -33,6 +33,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
+    /**
+     * Constructor
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -88,6 +91,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     }
 
+    /**
+     * Add entity.
+     *
+     * @param User $entity
+     * @param bool $flush
+     */
     public function add(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -97,6 +106,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+    /**
+     * Remove entity.
+     * @param User $entity
+     * @param bool $flush
+     */
     public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

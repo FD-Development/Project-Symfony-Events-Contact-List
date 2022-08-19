@@ -29,6 +29,9 @@ class TagRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
+    /**
+     * Constructor
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
@@ -59,7 +62,12 @@ class TagRepository extends ServiceEntityRepository
             );
     }
 
-
+    /**
+     * Add entity.
+     *
+     * @param Tag $entity
+     * @param bool $flush
+     */
     public function add(Tag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -91,6 +99,12 @@ class TagRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Remove entity
+     *
+     * @param Tag $entity
+     * @param bool $flush
+     */
     public function remove(Tag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -100,6 +114,14 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Finds one Tag by given id
+     *
+     * @param $value
+     * @return Tag|null
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneById($value): ?Tag
     {
         $queryBuilder = $this->queryAll();

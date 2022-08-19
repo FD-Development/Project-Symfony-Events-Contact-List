@@ -8,63 +8,107 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use DateTime;
 
+/**
+ * Event entity
+ */
 #[ORM\Table(name: 'event')]
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
 {
+    /**
+     * @var int id
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
+    /**
+     * @var string title
+     */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 64)]
-    private ?string $title = null;
+    private string $title;
 
-
+    /**
+     * @var string|null description
+     */
     #[ORM\Column(type: 'text', nullable: true)]
     #[Assert\Type('string')]
     #[Assert\Length(max: 675)]
-    private $description;
+    private ?string $description;
 
+
+    /**
+     * @var Category Associated Category
+     */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable:false)]
     #[Assert\Type(Category::class)]
     #[Assert\NotBlank]
-    private $category;
+    private Category $category;
 
+    /**
+     * @var Collection<Tag> Associated Tags
+     */
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\JoinColumn(nullable:false)]
     #[ORM\JoinTable(name: 'event_tags')]
     #[Assert\Valid]
-    private $tags;
+    private Collection $tags;
 
+    /**
+     * @var User Associated User
+     */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable:false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
-    private ?User $author;
+    private User $author;
 
+    /**
+     * @var \DateTimeInterface Time at which the event starts
+     */
     #[ORM\Column(type: 'time')]
     #[Assert\Type('DateTime')]
-    private $timeFrom;
+    private \DateTimeInterface $timeFrom;
 
+    /**
+     * @var \DateTimeInterface Date at which the event starts
+     */
     #[ORM\Column(type: 'date')]
     #[Assert\Type('DateTime')]
     #[Assert\GreaterThanOrEqual(propertyPath:'dateFrom')]
-    private $dateFrom;
+    private \DateTimeInterface $dateFrom;
 
+    /**
+     * @var \DateTimeInterface Time at which the event ends
+     */
     #[ORM\Column(type: 'time')]
     #[Assert\Type('DateTime')]
-    private $timeTo;
+    private \DateTimeInterface $timeTo;
 
+    /**
+     * @var \DateTimeInterface Date at which the event ends
+     */
     #[ORM\Column(type: 'date')]
     #[Assert\Type('DateTime')]
-    private $dateTo;
+    private \DateTimeInterface $dateTo;
 
+    /**
+     * Form validation.
+     * Prevents the user to create an event which ends before it starts
+     *
+     * @param ExecutionContextInterface $context
+     *
+     * @return void
+     */
     #[Assert\Callback]
-    public function validate(ExecutionContextInterface $context, $payload)
+    public function validate(ExecutionContextInterface $context) :void
     {
         if ($this->getDateFrom() === $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo())
         {

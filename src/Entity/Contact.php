@@ -5,52 +5,83 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
 
+/**
+ * Contact entity
+ */
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {
+    /**
+     * @var int id
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
+    /**
+     * @var string name
+     */
     #[ORM\Column(type: 'string', length: 155)]
     #[Assert\Length(max: 155)]
-    private $name;
+    private string $name;
 
+    /**
+     * @var string|null surname
+     */
     #[ORM\Column(type: 'string', length: 155, nullable: true)]
     #[Assert\Length(max: 155)]
-    private $surname;
+    private ?string $surname;
 
+    /**
+     * @var string|null email
+     */
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
     #[Assert\Type('string')]
     #[Assert\Length(max: 45)]
-    private $email;
+    private ?string $email;
 
+    /**
+     * @var string|null telephone number
+     */
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     #[Assert\Type('string')]
     #[Assert\Length(max: 20)]
-    private $telephone;
+    private ?string $telephone;
 
+    /**
+     * @var DateTime|null birthdate
+     */
     #[ORM\Column(type: 'date', nullable: true)]
     #[Assert\Type('datetime')]
-    private $birthdate;
+    private ?DateTime $birthdate;
 
+    /**
+     * @var string|null notes
+     */
     #[ORM\Column(type: 'text', nullable: true)]
     #[Assert\Type('string')]
     #[Assert\Length(max: 675)]
-    private $note;
+    private ?string $note;
 
+    /**
+     * @var Category|null Associated Category
+     */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Category::class)]
     #[Assert\NotBlank]
-    private $category;
+    private ?Category $category;
 
+    /**
+     * @var User Associated User
+     */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable:false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
-    private ?User $author;
+    private User $author;
 
     public function getId(): ?int
     {
@@ -110,7 +141,7 @@ class Contact
         return $this->birthdate;
     }
 
-    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    public function setBirthdate(?\DateTime $birthdate): self
     {
         $this->birthdate = $birthdate;
 
@@ -141,11 +172,18 @@ class Contact
         return $this;
     }
 
+    /**
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * @param User|null $author
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

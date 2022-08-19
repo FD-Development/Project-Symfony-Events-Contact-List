@@ -26,6 +26,11 @@ class TagController extends AbstractController
     private TagServiceInterface $tagService;
 
     /**
+     * Translator Interface.
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * Constructor.
      */
     public function __construct(TagServiceInterface $tagService, TranslatorInterface $translation)
@@ -53,6 +58,13 @@ class TagController extends AbstractController
         return $this->render('tag/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Show action
+     *
+     * @param Tag $tag Tag entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}', name: 'tag_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
     )]
@@ -61,6 +73,13 @@ class TagController extends AbstractController
         return $this->render('tag/show.html.twig', ['tag' => $tag]);
     }
 
+    /**
+     * Create action
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/create', name: 'tag_create', methods: 'GET|POST',
     )]
@@ -123,6 +142,14 @@ class TagController extends AbstractController
         );
     }
 
+    /**
+     * Delete action
+     *
+     * @param Request $request HTTP request
+     * @param Tag $tag Tag entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
     )]

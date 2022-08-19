@@ -28,6 +28,9 @@ class CategoryRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 20;
 
+    /**
+     * Constructor
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
@@ -58,6 +61,13 @@ class CategoryRepository extends ServiceEntityRepository
             );
     }
 
+    /**
+     * Add entity
+     *
+     * @param Category $entity
+     * @param bool $flush
+     *  
+     */
     public function add(Category $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -89,6 +99,12 @@ class CategoryRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Remove entity.
+     * @param Category $entity
+     * @param bool $flush
+     *  
+     */
     public function remove(Category $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -98,6 +114,13 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Find One category by given id
+     *
+     * @param $value
+     * @return Category|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneById($value): ?Category
     {
         $queryBuilder = $this->queryAll();

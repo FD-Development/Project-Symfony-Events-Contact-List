@@ -26,6 +26,11 @@ class CategoryController extends AbstractController
     private CategoryServiceInterface $categoryService;
 
     /**
+     * Translator Interface.
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * Constructor.
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translation)
@@ -53,6 +58,13 @@ class CategoryController extends AbstractController
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Show action
+     *
+     * @param Category $category Category entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}', name: 'category_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
     )]
@@ -61,6 +73,13 @@ class CategoryController extends AbstractController
         return $this->render('category/show.html.twig', ['category' => $category]);
     }
 
+    /**
+     * Create action
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/create', name: 'category_create', methods: 'GET|POST',
     )]
@@ -123,6 +142,12 @@ class CategoryController extends AbstractController
         );
     }
 
+    /**
+     * @param Request $request HTTP request
+     * @param Category $category Category Enitity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
     )]

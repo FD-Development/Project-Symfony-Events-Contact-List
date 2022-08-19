@@ -29,6 +29,9 @@ class ContactRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Contact::class);
@@ -92,6 +95,11 @@ class ContactRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Remove entity
+     * @param Contact $entity
+     * @param bool $flush
+     */
     public function remove(Contact $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

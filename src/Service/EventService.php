@@ -15,6 +15,7 @@ use App\Entity\Event;
  use App\Entity\User;
 use Symfony\Component\Intl\Data\Util\RecursiveArrayAccess;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class EventService.
@@ -67,12 +68,12 @@ class EventService implements EventServiceInterface
      * Get paginated list for specified user.
      *
      * @param int $page Page number
-     * @param User $author Author
+     * @param User|UserInterface $author Author
      * @param array $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, User $author, array $filters = []): PaginationInterface
+    public function getPaginatedList(int $page, User|UserInterface $author, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
         return $this->paginator->paginate(
@@ -86,13 +87,13 @@ class EventService implements EventServiceInterface
      * Get paginated list of events that are in specified date.
      *
      * @param int $page Page number
-     * @param User $author Author
+     * @param User|UserInterface $author Author
      * @param DateTime $date Date to search by
      * @param array $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getEventsByDate(int $page, User $author, DateTime $date, array $filters = [] ): PaginationInterface
+    public function getEventsByDate(int $page, User|UserInterface $author, DateTime $date, array $filters = [] ): PaginationInterface
     {
         $date = date_format( $date, 'Y-m-d');
         $filters = $this->prepareFilters($filters);
@@ -108,13 +109,13 @@ class EventService implements EventServiceInterface
      * Get paginated list of events that start after specified date.
      *
      * @param int $page Page number
-     * @param User $author Author
+     * @param User|UserInterface $author Author
      * @param DateTime $date Date to search by
      * @param array $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getUpcomingEvents(int $page, User $author, DateTime $date, array $filters = [] ): PaginationInterface
+    public function getUpcomingEvents(int $page, User|UserInterface $author, DateTime $date, array $filters = [] ): PaginationInterface
     {
         $date = date_format( $date, 'Y-m-d');
         $filters = $this->prepareFilters($filters);

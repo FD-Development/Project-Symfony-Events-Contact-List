@@ -26,6 +26,11 @@ class ContactController extends AbstractController
     private ContactServiceInterface $contactService;
 
     /**
+     * Translator Interface.
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * Constructor.
      */
     public function __construct(ContactServiceInterface $contactService, TranslatorInterface $translation)
@@ -53,6 +58,13 @@ class ContactController extends AbstractController
         return $this->render('contact/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Show action
+     *
+     * @param Contact $contact Contact entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}', name: 'contact_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
     )]
@@ -60,7 +72,13 @@ class ContactController extends AbstractController
     {
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
     }
-
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP Request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
          '/create', name: 'contact_create', methods: 'GET|POST',
     )]
@@ -129,6 +147,14 @@ class ContactController extends AbstractController
         );
     }
 
+    /**
+     * Delete Action
+     *
+     * @param Request  $request  HTTP request
+     * @param Contact $contact Contact entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}/delete', name: 'contact_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
     )]

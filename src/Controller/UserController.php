@@ -29,6 +29,11 @@ class UserController extends AbstractController
     private UserServiceInterface $userService;
 
     /**
+     * Translator Interface.
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * Password hasher.
      */
     protected UserPasswordHasherInterface $passwordHasher;
@@ -66,6 +71,13 @@ class UserController extends AbstractController
         return $this->render('user/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Show action
+     *
+     * @param User $user User entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}', name: 'user_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET'
     )]
@@ -74,6 +86,13 @@ class UserController extends AbstractController
             return $this->render('user/show.html.twig', ['user' => $user]);
     }
 
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP Request
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/create', name: 'user_create', methods: 'GET|POST',
     )]
@@ -109,7 +128,7 @@ class UserController extends AbstractController
      * Edit action.
      *
      * @param Request  $request  HTTP request
-     * @param User $user Category entity
+     * @param User $user User entity
      *
      * @return Response HTTP response
      */
@@ -144,6 +163,13 @@ class UserController extends AbstractController
         );
     }
 
+    /**
+     * Delete action
+     * @param Request $request HTTP request
+     * @param User $user User Entity
+     *
+     * @return Response HTTP response
+     */
     #[Route(
         '/{id}/delete', name: 'user_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE'
     )]
@@ -168,7 +194,7 @@ class UserController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            if ( $this->getUser()->getRoles()[2] = 'ROLE_ADMIN') {
+            if ( $this->getUser()->getRoles()[2] == 'ROLE_ADMIN') {
             return $this->redirectToRoute('user_index');
             }
             else {
