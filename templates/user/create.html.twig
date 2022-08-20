@@ -26,8 +26,8 @@
     </div>
     {{ form_end(form) }}
     <div id="form-buttons">
-        <a class="btn btn-outline-light" href="{{  url('app_login') }}" title=" {{ 'action.back_to_login' }}">
-            {{ 'action.login' }}
+        <a class="btn btn-outline-light" href="{{  url('app_login') }}" title=" {{ 'action.login'|trans }}">
+            {{ 'action.login'|trans }}
         </a>
     </div>
 {% endblock %}

@@ -286,6 +286,10 @@
         <source>action.logout</source>
         <target>Logout</target>
       </trans-unit>
+      <trans-unit id="action.login">
+        <source>action.login</source>
+        <target>Sign In</target>
+      </trans-unit>
       <trans-unit id="action.cancel">
         <source>action.cancel</source>
         <target>Cancel</target>
