@@ -34,8 +34,8 @@
              </div>
              {% else %}
                  <div id="form-buttons">
-                     <a class="btn btn-warning" href="{{  url('user_show', {id: app.user.id} ) }}" title=" {{ 'action.cancel' }}">
-                         {{ 'action.cancel' }}
+                     <a class="btn btn-warning" href="{{  url('user_show', {id: app.user.id} ) }}" title=" {{ 'action.cancel'|trans }}">
+                         {{ 'action.cancel'|trans }}
                      </a>
                  </div>
         {% endif %}

@@ -20,8 +20,8 @@
             <dd>{{ contact.birthdate|date("d.m.Y") }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  contact.category.title }}</dd>
-            <dt>{{ 'label.note' }}</dt>
-            <dd>{{ contact.note|trans}}</dd>
+            <dt>{{ 'label.note'|trans }}</dt>
+            <dd>{{ contact.note }}</dd>
         </dl>
         <div>
             <a class="btn btn-primary" href="{{ url('contact_index') }}" title="{{ 'action.back_to_list'|trans }}">

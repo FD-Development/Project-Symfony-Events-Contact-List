@@ -27,8 +27,8 @@
         </div>
         {{ form_end(form) }}
         <div id="form-buttons">
-            <a href="{{  url('user_show', {id: app.user.id} ) }}" title=" {{ 'action.cancel' }}">
-                {{ 'action.cancel' }}
+            <a href="{{  url('user_show', {id: app.user.id} ) }}" title=" {{ 'action.cancel'|trans }}">
+                {{ 'action.cancel'|trans }}
             </a>
         </div>
     {% else %}
