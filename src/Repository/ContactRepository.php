@@ -4,9 +4,11 @@ namespace App\Repository;
 
 use App\Entity\Contact;
 use App\Entity\Category;
+use App\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @extends ServiceEntityRepository<Contact>
@@ -50,11 +52,13 @@ class ContactRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records.
+     * Query all records by specific user.
+     *
+     * @param $user User|UserInterface entity
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll($user): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
@@ -62,6 +66,8 @@ class ContactRepository extends ServiceEntityRepository
                 'partial category.{id, title}'
             )
             ->join('contact.category', 'category')
+            ->where('contact.author = :user')
+            ->setParameter(':user', $user)
             ->orderBy('contact.name', 'DESC');
     }
 

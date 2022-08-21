@@ -6,10 +6,12 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Repository\ContactRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Contact;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class ContactService.
@@ -42,13 +44,14 @@ class ContactService implements ContactServiceInterface
      * Get paginated list.
      *
      * @param int $page Page number
+     * @param User|UserInterface $user User entity
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page): PaginationInterface
+    public function getPaginatedList(int $page, UserInterface|User $user): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->contactRepository->queryAll(),
+            $this->contactRepository->queryAll($user),
             $page,
             ContactRepository::PAGINATOR_ITEMS_PER_PAGE
         );

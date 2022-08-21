@@ -22,7 +22,7 @@ class ContactFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         if (null === $this->manager || null === $this->faker) {
             return;
         }
-        $this->createMany(7, 'contacts', function (int $i) {
+        $this->createMany(70, 'contacts', function (int $i) {
             $contact = new Contact();
             $contact->setName($this->faker->firstName);
             $contact->setSurname($this->faker->lastName);
