@@ -67,7 +67,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Delete all records associated to the user.
+     * Deletes all records associated to the user.
+     *
+     * @param User $user User entity
      */
     public function DeleteAssociated(User $user): void
     {
