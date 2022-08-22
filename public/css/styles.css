@@ -25,6 +25,10 @@ nav ul li{
 	border-color: Black;
 }
 
+#admin{
+	background-color: #98FB98;
+}
+
 nav ul li a{
 	text-decoration: none;
 	width: inherit;
