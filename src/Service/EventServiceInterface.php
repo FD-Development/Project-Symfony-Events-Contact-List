@@ -52,8 +52,18 @@ interface EventServiceInterface
      */
     public function getUpcomingEvents(int $page, User|UserInterface $author, DateTime $date, array $filters): PaginationInterface;
 
+    /**
+     * Save entity
+     * @param Event $event
+     * @return void
+     */
     public function save(Event $event): void;
 
+    /**
+     * Delete entity
+     * @param Event $event
+     * @return void
+     */
     public function delete(Event $event): void;
 
     // public function update(Event $event): void;

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Tag repository
+ */
 namespace App\Repository;
 
 use App\Entity\Tag;
@@ -30,23 +32,13 @@ class TagRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
     }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('tag');
-    }
 
     /**
      * Query all records.
@@ -62,7 +54,11 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Add entity.
+     * Add entity
+     *
+     * @param Tag $entity
+     * @param bool $flush
+     * @return void
      */
     public function add(Tag $entity, bool $flush = false): void
     {
@@ -77,6 +73,7 @@ class TagRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Tag $tag Tag entity
+     * @return void
      */
     public function save(Tag $tag): void
     {
@@ -88,6 +85,7 @@ class TagRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Tag $tag Tag entity
+     * @return void
      */
     public function delete(Tag $tag): void
     {
@@ -97,6 +95,10 @@ class TagRepository extends ServiceEntityRepository
 
     /**
      * Remove entity.
+     *
+     * @param Tag $entity
+     * @param bool $flush
+     * @return void
      */
     public function remove(Tag $entity, bool $flush = false): void
     {
@@ -111,8 +113,8 @@ class TagRepository extends ServiceEntityRepository
      * Finds one Tag by given id.
      *
      * @param $value
-     *
      * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return Tag|null
      */
     public function findOneById($value): ?Tag
     {
@@ -125,6 +127,17 @@ class TagRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('tag');
+    }
 //    /**
 //     * @return Tag[] Returns an array of Tag objects
 //     */

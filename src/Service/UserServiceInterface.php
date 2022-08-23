@@ -23,8 +23,18 @@ interface UserServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    /**
+     * Save entity
+     * @param User $user
+     * @return void
+     */
     public function save(User $user): void;
 
+    /**
+     * Delete entity
+     * @param User $user
+     * @return void
+     */
     public function delete(User $user): void;
 
     // public function update(User $user): void;

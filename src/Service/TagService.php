@@ -37,6 +37,7 @@ class TagService implements TagServiceInterface
      *
      * @param TagRepository      $tagRepository Tag repository
      * @param PaginatorInterface $paginator     Paginator
+     * @param EventRepository $eventRepository Event repository
      */
     public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, EventRepository $eventRepository)
     {
@@ -61,11 +62,21 @@ class TagService implements TagServiceInterface
         );
     }
 
+    /**
+     * Save entity
+     * @param Tag $tag
+     * @return void
+     */
     public function save(Tag $tag): void
     {
         $this->tagRepository->save($tag);
     }
 
+    /**
+     * Remove entity
+     * @param Tag $tag
+     * @return void
+     */
     public function delete(Tag $tag): void
     {
         $this->tagRepository->delete($tag);

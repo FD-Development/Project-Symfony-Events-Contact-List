@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Category Entity.
+ */
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -8,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Category Entity.
+ * Category Entity class.
  */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ORM\UniqueConstraint(name: 'uq_categories_title', columns: ['title'])]
@@ -31,16 +33,29 @@ class Category
     #[Assert\Length(min: 2, max: 30)]
     private string $title;
 
+    /**
+     * Gets Category id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Gets title
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Sets title
+     * @param string $title
+     * @return $this
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;

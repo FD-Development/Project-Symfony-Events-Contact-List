@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Event Entity.
+ */
 namespace App\Entity;
 
 use App\Repository\EventRepository;
@@ -10,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * Event entity.
+ * Event entity class.
  */
 #[ORM\Table(name: 'event')]
 #[ORM\Entity(repositoryClass: EventRepository::class)]
@@ -100,6 +102,7 @@ class Event
     /**
      * Form validation.
      * Prevents the user to create an event which ends before it starts.
+     * @param $context ExecutionContextInterface
      */
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context): void
@@ -115,21 +118,37 @@ class Event
         }
     }
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
     }
 
+    /**
+     * Gets id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Gets title
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Sets title
+     * @param string $title
+     * @return $this
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -137,11 +156,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Get description
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Sets description
+     * @param string|null $description
+     * @return $this
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -149,11 +177,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Gets category
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Sets category
+     * @param Category|null $category
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -162,6 +199,7 @@ class Event
     }
 
     /**
+     * Gets tag
      * @return Collection<int, Tag>
      */
     public function getTags(): Collection
@@ -169,6 +207,11 @@ class Event
         return $this->tags;
     }
 
+    /**
+     * Sets tag
+     * @param Tag $tag
+     * @return $this
+     */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
@@ -178,6 +221,11 @@ class Event
         return $this;
     }
 
+    /**
+     * Removes tag
+     * @param Tag $tag
+     * @return $this
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -185,11 +233,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Gets tag
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Sets author
+     * @param User|null $author
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
@@ -197,11 +254,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Gets TimeFrom
+     * @return \DateTimeInterface|null
+     */
     public function getTimeFrom(): ?\DateTimeInterface
     {
         return $this->timeFrom;
     }
 
+    /**
+     * Sets TimeFrom
+     * @param \DateTimeInterface $timeFrom
+     * @return $this
+     */
     public function setTimeFrom(\DateTimeInterface $timeFrom): self
     {
         $this->timeFrom = $timeFrom;
@@ -209,11 +275,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Gets DateFrom
+     * @return \DateTimeInterface|null
+     */
     public function getDateFrom(): ?\DateTimeInterface
     {
         return $this->dateFrom;
     }
 
+    /**
+     * Sets DateFrom
+     * @param \DateTimeInterface $dateFrom
+     * @return $this
+     */
     public function setDateFrom(\DateTimeInterface $dateFrom): self
     {
         $this->dateFrom = $dateFrom;
@@ -221,11 +296,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Gets TimeTo
+     * @return \DateTimeInterface|null
+     */
     public function getTimeTo(): ?\DateTimeInterface
     {
         return $this->timeTo;
     }
 
+    /**
+     * Sets TimeTo
+     * @param \DateTimeInterface $timeTo
+     * @return $this
+     */
     public function setTimeTo(\DateTimeInterface $timeTo): self
     {
         $this->timeTo = $timeTo;
@@ -233,11 +317,20 @@ class Event
         return $this;
     }
 
+    /**
+     * Gets DateTo
+     * @return \DateTimeInterface|null
+     */
     public function getDateTo(): ?\DateTimeInterface
     {
         return $this->dateTo;
     }
 
+    /**
+     * Sets DateTo
+     * @param \DateTimeInterface $dateTo
+     * @return $this
+     */
     public function setDateTo(\DateTimeInterface $dateTo): self
     {
         $this->dateTo = $dateTo;

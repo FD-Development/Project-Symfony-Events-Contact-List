@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Category repository
+ */
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -30,23 +32,13 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
     }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('category');
-    }
 
     /**
      * Query all records.
@@ -63,6 +55,10 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Add entity.
+     *
+     * @param Category $entity
+     * @param bool $flush
+     * @return void
      */
     public function add(Category $entity, bool $flush = false): void
     {
@@ -77,6 +73,7 @@ class CategoryRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Category $category Category entity
+     * @return void
      */
     public function save(Category $category): void
     {
@@ -88,6 +85,7 @@ class CategoryRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Category $category Category entity
+     * @return void
      */
     public function delete(Category $category): void
     {
@@ -97,6 +95,10 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Remove entity.
+     * @param Category $entity
+     * @param bool $flush
+     *
+     * @return void
      */
     public function remove(Category $entity, bool $flush = false): void
     {
@@ -111,7 +113,7 @@ class CategoryRepository extends ServiceEntityRepository
      * Find One category by given id.
      *
      * @param $value
-     *
+     * @return Category|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneById($value): ?Category
@@ -123,6 +125,18 @@ class CategoryRepository extends ServiceEntityRepository
             ->setParameter('id', $value)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('category');
     }
 
 //    /**

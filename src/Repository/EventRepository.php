@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Event repository
+ */
 namespace App\Repository;
 
 use App\Entity\Event;
@@ -33,23 +35,13 @@ class EventRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Event::class);
     }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('event');
-    }
 
     /**
      * Query all records.
@@ -165,6 +157,7 @@ class EventRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Event $event Event entity
+     * @return void
      */
     public function save(Event $event): void
     {
@@ -176,6 +169,7 @@ class EventRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Event $event Event entity
+     * @return void
      */
     public function delete(Event $event): void
     {
@@ -183,6 +177,13 @@ class EventRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    /**
+     * Remove entity
+     *
+     * @param Event $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Event $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -238,6 +239,18 @@ class EventRepository extends ServiceEntityRepository
             ->setParameter(':tag', $tag->getId())
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('event');
     }
 
 //    /**

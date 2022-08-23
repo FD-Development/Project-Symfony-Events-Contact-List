@@ -54,6 +54,10 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
         $this->manager->flush();
     }
 
+    /**
+     * Gets Dependencies
+     * @return string[]
+     */
     public function getDependencies(): array
     {
         return [CategoryFixtures::class];

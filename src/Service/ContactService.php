@@ -43,7 +43,7 @@ class ContactService implements ContactServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int                $page Page number
      * @param User|UserInterface $user User entity
      *
      * @return PaginationInterface<string, mixed> Paginated list
@@ -57,11 +57,21 @@ class ContactService implements ContactServiceInterface
         );
     }
 
+    /**
+     * Save entity
+     * @param Contact $contact
+     * @return void
+     */
     public function save(Contact $contact): void
     {
         $this->contactRepository->save($contact);
     }
 
+    /**
+     * Delete entity
+     * @param Contact $contact
+     * @return void
+     */
     public function delete(Contact $contact): void
     {
         $this->contactRepository->delete($contact);

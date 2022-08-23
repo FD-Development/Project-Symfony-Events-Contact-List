@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User repository
+ */
 namespace App\Repository;
 
 use App\Entity\User;
@@ -35,6 +37,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Constructor.
+     *
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -70,8 +74,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Deletes all records associated to the user.
      *
      * @param User $user User entity
+     * @return void
      */
-    public function DeleteAssociated(User $user): void
+    public function deleteAssociated(User $user): void
     {
         $queryBuilder = $this->getOrCreateQueryBuilder();
         $queryBuilder
@@ -91,6 +96,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Add entity.
+     *
+     * @param User $entity
+     * @param bool $flush
+     * @return void
      */
     public function add(User $entity, bool $flush = false): void
     {
@@ -103,6 +112,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Remove entity.
+     *
+     * @param User $entity
+     * @param bool $flush
+     * @return void
      */
     public function remove(User $entity, bool $flush = false): void
     {
@@ -115,6 +128,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param PasswordAuthenticatedUserInterface $user
+     * @param string $newHashedPassword
+     * @return void
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
@@ -131,6 +148,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Save entity.
      *
      * @param User $user Event entity
+     * @return void
      */
     public function save(User $user): void
     {
@@ -142,10 +160,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Delete entity.
      *
      * @param User $user User entity
+     * @return void
      */
     public function delete(User $user): void
     {
-        $this->DeleteAssociated($user);
+        $this->deleteAssociated($user);
 
         $this->_em->remove($user);
         $this->_em->flush();

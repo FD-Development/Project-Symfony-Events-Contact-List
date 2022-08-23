@@ -21,17 +21,20 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class EventController extends AbstractController
 {
     /**
-     * Event service.
+     * @var EventServiceInterface
      */
     private EventServiceInterface $eventService;
 
     /**
-     * Translator Interface.
+     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
     /**
      * Constructor.
+     *
+     * @param EventServiceInterface $eventService
+     * @param TranslatorInterface $translator
      */
     public function __construct(EventServiceInterface $eventService, TranslatorInterface $translator)
     {

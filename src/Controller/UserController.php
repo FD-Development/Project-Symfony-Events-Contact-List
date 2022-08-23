@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -202,7 +201,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.deleted_successfully')
@@ -212,15 +210,15 @@ class UserController extends AbstractController
                 $this->userService->delete($user);
                 $request->getSession()->invalidate();
                 $this->container->get('security.token_storage')->setToken(null);
+
                 return $this->redirectToRoute('app_login');
             }
 
-            if ($this->isGranted('ROLE_ADMIN'))
-            {
+            if ($this->isGranted('ROLE_ADMIN')) {
                 $this->userService->delete($user);
+
                 return $this->redirectToRoute('user_index');
             }
-
         }
 
         return $this->render(

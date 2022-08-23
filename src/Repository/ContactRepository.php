@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Contact repository
+ */
 namespace App\Repository;
 
 use App\Entity\Contact;
@@ -33,29 +35,18 @@ class ContactRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Contact::class);
     }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('contact');
-    }
 
     /**
      * Query all records by specific user.
      *
      * @param $user User|UserInterface entity
-     *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function queryAll($user): QueryBuilder
@@ -71,6 +62,13 @@ class ContactRepository extends ServiceEntityRepository
             ->orderBy('contact.name', 'DESC');
     }
 
+    /**
+     * Add entity
+     *
+     * @param Contact $entity
+     * @param bool $flush
+     * @return void
+     */
     public function add(Contact $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -84,6 +82,7 @@ class ContactRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Contact $contact Event entity
+     * @return void
      */
     public function save(Contact $contact): void
     {
@@ -95,6 +94,7 @@ class ContactRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Contact $contact Contact entity
+     * @return void
      */
     public function delete(Contact $contact): void
     {
@@ -104,6 +104,10 @@ class ContactRepository extends ServiceEntityRepository
 
     /**
      * Remove entity.
+     *
+     * @param Contact $entity
+     * @param bool $flush
+     * @return void
      */
     public function remove(Contact $entity, bool $flush = false): void
     {
@@ -133,6 +137,17 @@ class ContactRepository extends ServiceEntityRepository
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('contact');
     }
 
 //    /**

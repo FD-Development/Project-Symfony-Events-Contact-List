@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Contact entity.
+ */
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
@@ -8,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
 
 /**
- * Contact entity.
+ * Contact entity class.
  */
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -83,16 +85,28 @@ class Contact
     #[Assert\Type(User::class)]
     private User $author;
 
+    /**
+     * Gets Contact id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    /**
+     * Gets name
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Sets name
+     * @param string $name
+     * @return $this
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -100,11 +114,20 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets surname
+     * @return string|null
+     */
     public function getSurname(): ?string
     {
         return $this->surname;
     }
 
+    /**
+     * Sets surname
+     * @param string|null $surname
+     * @return $this
+     */
     public function setSurname(?string $surname): self
     {
         $this->surname = $surname;
@@ -112,11 +135,20 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets email
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Sets email
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -124,11 +156,20 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets telephone
+     * @return string|null
+     */
     public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
+    /**
+     * Sets telephone
+     * @param string|null $telephone
+     * @return $this
+     */
     public function setTelephone(?string $telephone): self
     {
         $this->telephone = $telephone;
@@ -136,11 +177,20 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets birthdate
+     * @return \DateTimeInterface|null
+     */
     public function getBirthdate(): ?\DateTimeInterface
     {
         return $this->birthdate;
     }
 
+    /**
+     * Sets birthdate
+     * @param DateTime|null $birthdate
+     * @return $this
+     */
     public function setBirthdate(?DateTime $birthdate): self
     {
         $this->birthdate = $birthdate;
@@ -148,11 +198,20 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets note
+     * @return string|null
+     */
     public function getNote(): ?string
     {
         return $this->note;
     }
 
+    /**
+     * Sets note
+     * @param string|null $note
+     * @return $this
+     */
     public function setNote(?string $note): self
     {
         $this->note = $note;
@@ -160,11 +219,20 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets category
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Sets category
+     * @param Category|null $category
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -172,12 +240,18 @@ class Contact
         return $this;
     }
 
+    /**
+     * Gets author
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
     /**
+     * Sets author
+     * @param User|null $author
      * @return $this
      */
     public function setAuthor(?User $author): self

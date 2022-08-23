@@ -54,11 +54,21 @@ class UserService implements UserServiceInterface
         );
     }
 
+    /**
+     * Save entity
+     * @param User $user
+     * @return void
+     */
     public function save(User $user): void
     {
         $this->userRepository->save($user);
     }
 
+    /**
+     * Delete entity
+     * @param User $user
+     * @return void
+     */
     public function delete(User $user): void
     {
         $this->userRepository->delete($user);

@@ -45,6 +45,10 @@ class ContactFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         $this->manager->flush();
     }
 
+    /**
+     * Gets Dependencies
+     * @return string[]
+     */
     public function getDependencies(): array
     {
         return [CategoryFixtures::class];
