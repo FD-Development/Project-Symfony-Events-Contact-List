@@ -43,8 +43,8 @@ class CategoryService implements CategoryServiceInterface
      *
      * @param CategoryRepository $categoryRepository Category repository
      * @param PaginatorInterface $paginator          Paginator
-     * @param EventRepository $eventRepository       Event repository
-     * @param ContactRepository $contactRepository   Contact repository
+     * @param EventRepository    $eventRepository    Event repository
+     * @param ContactRepository  $contactRepository  Contact repository
      */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EventRepository $eventRepository, ContactRepository $contactRepository)
     {
@@ -73,6 +73,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Save entity
      * @param Category $category
+     *
      * @return void
      */
     public function save(Category $category): void
@@ -83,6 +84,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Delete entity
      * @param Category $category
+     *
      * @return void
      */
     public function delete(Category $category): void

@@ -29,6 +29,7 @@ interface ContactServiceInterface
     /**
      * Save entity
      * @param Contact $contact
+     *
      * @return void
      */
     public function save(Contact $contact): void;
@@ -36,6 +37,7 @@ interface ContactServiceInterface
     /**
      * Delete entity
      * @param Contact $contact
+     *
      * @return void
      */
     public function delete(Contact $contact): void;

@@ -60,6 +60,7 @@ class ContactService implements ContactServiceInterface
     /**
      * Save entity
      * @param Contact $contact
+     *
      * @return void
      */
     public function save(Contact $contact): void
@@ -70,6 +71,7 @@ class ContactService implements ContactServiceInterface
     /**
      * Delete entity
      * @param Contact $contact
+     *
      * @return void
      */
     public function delete(Contact $contact): void

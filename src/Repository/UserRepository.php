@@ -46,18 +46,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('user');
-    }
-
-    /**
      * Query all records.
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
@@ -74,6 +62,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Deletes all records associated to the user.
      *
      * @param User $user User entity
+     *
      * @return void
      */
     public function deleteAssociated(User $user): void
@@ -99,6 +88,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      *
      * @param User $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function add(User $entity, bool $flush = false): void
@@ -115,6 +105,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      *
      * @param User $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function remove(User $entity, bool $flush = false): void
@@ -130,7 +121,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Used to upgrade (rehash) the user's password automatically over time.
      *
      * @param PasswordAuthenticatedUserInterface $user
-     * @param string $newHashedPassword
+     * @param string                             $newHashedPassword
+     *
      * @return void
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
@@ -148,6 +140,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Save entity.
      *
      * @param User $user Event entity
+     *
      * @return void
      */
     public function save(User $user): void
@@ -160,6 +153,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Delete entity.
      *
      * @param User $user User entity
+     *
      * @return void
      */
     public function delete(User $user): void
@@ -168,6 +162,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->_em->remove($user);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('user');
     }
 
 //    /**

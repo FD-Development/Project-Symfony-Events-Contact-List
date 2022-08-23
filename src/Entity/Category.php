@@ -54,6 +54,7 @@ class Category
     /**
      * Sets title
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title): self

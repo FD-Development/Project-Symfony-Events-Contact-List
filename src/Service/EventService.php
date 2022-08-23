@@ -48,7 +48,8 @@ class EventService implements EventServiceInterface
      * @param TagServiceInterface      $tagService      Tag service interface
      *
      */
-    public function __construct(EventRepository $eventRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService, TagServiceInterface $tagService) {
+    public function __construct(EventRepository $eventRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService, TagServiceInterface $tagService)
+    {
         $this->eventRepository = $eventRepository;
         $this->paginator = $paginator;
         $this->categoryService = $categoryService;
@@ -119,7 +120,7 @@ class EventService implements EventServiceInterface
             [
                 'pageParameterName' => 'upcoming_page',
                 'sortFieldParameterName' => 'sort1',
-        'sortDirectionParameterName' => 'direction1',
+            'sortDirectionParameterName' => 'direction1',
             ]
         );
     }
@@ -127,6 +128,7 @@ class EventService implements EventServiceInterface
     /**
      * Save entity
      * @param Event $event
+     *
      * @return void
      */
     public function save(Event $event): void
@@ -137,6 +139,7 @@ class EventService implements EventServiceInterface
     /**
      * Delete entity
      * @param Event $event
+     *
      * @return void
      */
     public function delete(Event $event): void

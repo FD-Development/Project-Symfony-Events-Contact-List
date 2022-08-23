@@ -98,10 +98,10 @@ class EventRepository extends ServiceEntityRepository
         $queryBuilder
             ->andWhere(
                 $queryBuilder->expr()->between(
-                ':date',
-                'event.dateFrom',
-                'event.dateTo'
-            )
+                    ':date',
+                    'event.dateFrom',
+                    'event.dateTo'
+                )
             )
             ->orderBy('event.dateFrom,event.timeFrom', 'DESC')
             ->setParameter('date', $date);
@@ -130,33 +130,12 @@ class EventRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
-    /**
-     * Apply filters to paginated list.
-     *
-     * @param QueryBuilder          $queryBuilder Query builder
-     * @param array<string, object> $filters      Filters array
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
-    {
-        if (isset($filters['category']) && $filters['category'] instanceof Category) {
-            $queryBuilder->andWhere('category = :category')
-                ->setParameter('category', $filters['category']);
-        }
-
-        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
-            $queryBuilder->andWhere('tags IN (:tag)')
-                ->setParameter('tag', $filters['tag']);
-        }
-
-        return $queryBuilder;
-    }
 
     /**
      * Save entity.
      *
      * @param Event $event Event entity
+     *
      * @return void
      */
     public function save(Event $event): void
@@ -169,6 +148,7 @@ class EventRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Event $event Event entity
+     *
      * @return void
      */
     public function delete(Event $event): void
@@ -181,7 +161,8 @@ class EventRepository extends ServiceEntityRepository
      * Remove entity
      *
      * @param Event $entity
-     * @param bool $flush
+     * @param bool  $flush
+     *
      * @return void
      */
     public function remove(Event $entity, bool $flush = false): void
@@ -253,6 +234,28 @@ class EventRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('event');
     }
 
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
+            $queryBuilder->andWhere('tags IN (:tag)')
+                ->setParameter('tag', $filters['tag']);
+        }
+
+        return $queryBuilder;
+    }
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

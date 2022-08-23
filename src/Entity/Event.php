@@ -147,6 +147,7 @@ class Event
     /**
      * Sets title
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title): self
@@ -168,6 +169,7 @@ class Event
     /**
      * Sets description
      * @param string|null $description
+     *
      * @return $this
      */
     public function setDescription(?string $description): self
@@ -189,6 +191,7 @@ class Event
     /**
      * Sets category
      * @param Category|null $category
+     *
      * @return $this
      */
     public function setCategory(?Category $category): self
@@ -210,6 +213,7 @@ class Event
     /**
      * Sets tag
      * @param Tag $tag
+     *
      * @return $this
      */
     public function addTag(Tag $tag): self
@@ -224,6 +228,7 @@ class Event
     /**
      * Removes tag
      * @param Tag $tag
+     *
      * @return $this
      */
     public function removeTag(Tag $tag): self
@@ -245,6 +250,7 @@ class Event
     /**
      * Sets author
      * @param User|null $author
+     *
      * @return $this
      */
     public function setAuthor(?User $author): self
@@ -266,6 +272,7 @@ class Event
     /**
      * Sets TimeFrom
      * @param \DateTimeInterface $timeFrom
+     *
      * @return $this
      */
     public function setTimeFrom(\DateTimeInterface $timeFrom): self
@@ -287,6 +294,7 @@ class Event
     /**
      * Sets DateFrom
      * @param \DateTimeInterface $dateFrom
+     *
      * @return $this
      */
     public function setDateFrom(\DateTimeInterface $dateFrom): self
@@ -308,6 +316,7 @@ class Event
     /**
      * Sets TimeTo
      * @param \DateTimeInterface $timeTo
+     *
      * @return $this
      */
     public function setTimeTo(\DateTimeInterface $timeTo): self
@@ -329,6 +338,7 @@ class Event
     /**
      * Sets DateTo
      * @param \DateTimeInterface $dateTo
+     *
      * @return $this
      */
     public function setDateTo(\DateTimeInterface $dateTo): self

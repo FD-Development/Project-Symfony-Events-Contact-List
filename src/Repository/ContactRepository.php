@@ -47,6 +47,7 @@ class ContactRepository extends ServiceEntityRepository
      * Query all records by specific user.
      *
      * @param $user User|UserInterface entity
+     *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function queryAll($user): QueryBuilder
@@ -66,7 +67,8 @@ class ContactRepository extends ServiceEntityRepository
      * Add entity
      *
      * @param Contact $entity
-     * @param bool $flush
+     * @param bool    $flush
+     *
      * @return void
      */
     public function add(Contact $entity, bool $flush = false): void
@@ -82,6 +84,7 @@ class ContactRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Contact $contact Event entity
+     *
      * @return void
      */
     public function save(Contact $contact): void
@@ -94,6 +97,7 @@ class ContactRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Contact $contact Contact entity
+     *
      * @return void
      */
     public function delete(Contact $contact): void
@@ -106,7 +110,8 @@ class ContactRepository extends ServiceEntityRepository
      * Remove entity.
      *
      * @param Contact $entity
-     * @param bool $flush
+     * @param bool    $flush
+     *
      * @return void
      */
     public function remove(Contact $entity, bool $flush = false): void
@@ -143,6 +148,7 @@ class ContactRepository extends ServiceEntityRepository
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
+     *
      * @return QueryBuilder Query builder
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder

@@ -105,6 +105,7 @@ class Contact
     /**
      * Sets name
      * @param string $name
+     *
      * @return $this
      */
     public function setName(string $name): self
@@ -126,6 +127,7 @@ class Contact
     /**
      * Sets surname
      * @param string|null $surname
+     *
      * @return $this
      */
     public function setSurname(?string $surname): self
@@ -147,6 +149,7 @@ class Contact
     /**
      * Sets email
      * @param string $email
+     *
      * @return $this
      */
     public function setEmail(string $email): self
@@ -168,6 +171,7 @@ class Contact
     /**
      * Sets telephone
      * @param string|null $telephone
+     *
      * @return $this
      */
     public function setTelephone(?string $telephone): self
@@ -189,6 +193,7 @@ class Contact
     /**
      * Sets birthdate
      * @param DateTime|null $birthdate
+     *
      * @return $this
      */
     public function setBirthdate(?DateTime $birthdate): self
@@ -210,6 +215,7 @@ class Contact
     /**
      * Sets note
      * @param string|null $note
+     *
      * @return $this
      */
     public function setNote(?string $note): self
@@ -231,6 +237,7 @@ class Contact
     /**
      * Sets category
      * @param Category|null $category
+     *
      * @return $this
      */
     public function setCategory(?Category $category): self
@@ -252,6 +259,7 @@ class Contact
     /**
      * Sets author
      * @param User|null $author
+     *
      * @return $this
      */
     public function setAuthor(?User $author): self

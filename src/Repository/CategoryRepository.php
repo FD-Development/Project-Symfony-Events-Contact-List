@@ -57,7 +57,8 @@ class CategoryRepository extends ServiceEntityRepository
      * Add entity.
      *
      * @param Category $entity
-     * @param bool $flush
+     * @param bool     $flush
+     *
      * @return void
      */
     public function add(Category $entity, bool $flush = false): void
@@ -73,6 +74,7 @@ class CategoryRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Category $category Category entity
+     *
      * @return void
      */
     public function save(Category $category): void
@@ -85,6 +87,7 @@ class CategoryRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Category $category Category entity
+     *
      * @return void
      */
     public function delete(Category $category): void
@@ -96,7 +99,7 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Remove entity.
      * @param Category $entity
-     * @param bool $flush
+     * @param bool     $flush
      *
      * @return void
      */
@@ -113,7 +116,9 @@ class CategoryRepository extends ServiceEntityRepository
      * Find One category by given id.
      *
      * @param $value
+     *
      * @return Category|null
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneById($value): ?Category

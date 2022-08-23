@@ -56,8 +56,9 @@ class TagRepository extends ServiceEntityRepository
     /**
      * Add entity
      *
-     * @param Tag $entity
+     * @param Tag  $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function add(Tag $entity, bool $flush = false): void
@@ -73,6 +74,7 @@ class TagRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Tag $tag Tag entity
+     *
      * @return void
      */
     public function save(Tag $tag): void
@@ -85,6 +87,7 @@ class TagRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Tag $tag Tag entity
+     *
      * @return void
      */
     public function delete(Tag $tag): void
@@ -96,8 +99,9 @@ class TagRepository extends ServiceEntityRepository
     /**
      * Remove entity.
      *
-     * @param Tag $entity
+     * @param Tag  $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function remove(Tag $entity, bool $flush = false): void
@@ -113,7 +117,9 @@ class TagRepository extends ServiceEntityRepository
      * Finds one Tag by given id.
      *
      * @param $value
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
      * @return Tag|null
      */
     public function findOneById($value): ?Tag

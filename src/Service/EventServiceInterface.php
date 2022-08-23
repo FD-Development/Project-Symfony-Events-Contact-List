@@ -55,6 +55,7 @@ interface EventServiceInterface
     /**
      * Save entity
      * @param Event $event
+     *
      * @return void
      */
     public function save(Event $event): void;
@@ -62,6 +63,7 @@ interface EventServiceInterface
     /**
      * Delete entity
      * @param Event $event
+     *
      * @return void
      */
     public function delete(Event $event): void;
