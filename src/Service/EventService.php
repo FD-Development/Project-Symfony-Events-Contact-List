@@ -21,21 +21,29 @@ class EventService implements EventServiceInterface
 {
     /**
      * Event repository.
+     *
+     * @var EventRepository EventRepository
      */
     private EventRepository $eventRepository;
 
     /**
      * Paginator.
+     *
+     * @var PaginationInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
     /**
      * Category service.
+     *
+     * @var CategoryServiceInterface CategoryServiceInterface
      */
     private CategoryServiceInterface $categoryService;
 
     /**
      * Tag service.
+     *
+     * @var TagServiceInterface TagServiceInterface
      */
     private TagServiceInterface $tagService;
 
@@ -46,7 +54,6 @@ class EventService implements EventServiceInterface
      * @param PaginatorInterface       $paginator       Paginator
      * @param CategoryServiceInterface $categoryService Category service interface
      * @param TagServiceInterface      $tagService      Tag service interface
-     *
      */
     public function __construct(EventRepository $eventRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService, TagServiceInterface $tagService)
     {
@@ -126,10 +133,9 @@ class EventService implements EventServiceInterface
     }
 
     /**
-     * Save entity
-     * @param Event $event
+     * Save entity.
      *
-     * @return void
+     * @param Event $event Event entity
      */
     public function save(Event $event): void
     {
@@ -137,10 +143,9 @@ class EventService implements EventServiceInterface
     }
 
     /**
-     * Delete entity
-     * @param Event $event
+     * Delete entity.
      *
-     * @return void
+     * @param Event $event Event entity
      */
     public function delete(Event $event): void
     {

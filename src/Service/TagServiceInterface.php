@@ -24,18 +24,16 @@ interface TagServiceInterface
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
-     * Save entity
-     * @param Tag $tag
+     * Save entity.
      *
-     * @return void
+     * @param Tag $tag Tag entity
      */
     public function save(Tag $tag): void;
 
     /**
-     * Delete entity
-     * @param Tag $tag
+     * Delete entity.
      *
-     * @return void
+     * @param Tag $tag Tag entity
      */
     public function delete(Tag $tag): void;
 

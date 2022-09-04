@@ -1,7 +1,8 @@
 <?php
 /**
- * Contact repository
+ * Contact repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Contact;
@@ -35,13 +36,13 @@ class ContactRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
-     * @param ManagerRegistry $registry
+     *
+     * @param ManagerRegistry $registry ManagerRegistry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Contact::class);
     }
-
 
     /**
      * Query all records by specific user.
@@ -64,12 +65,10 @@ class ContactRepository extends ServiceEntityRepository
     }
 
     /**
-     * Add entity
+     * Add entity.
      *
-     * @param Contact $entity
-     * @param bool    $flush
-     *
-     * @return void
+     * @param Contact $entity Contact
+     * @param bool    $flush  bool
      */
     public function add(Contact $entity, bool $flush = false): void
     {
@@ -84,8 +83,6 @@ class ContactRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Contact $contact Event entity
-     *
-     * @return void
      */
     public function save(Contact $contact): void
     {
@@ -97,8 +94,6 @@ class ContactRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Contact $contact Contact entity
-     *
-     * @return void
      */
     public function delete(Contact $contact): void
     {
@@ -109,10 +104,8 @@ class ContactRepository extends ServiceEntityRepository
     /**
      * Remove entity.
      *
-     * @param Contact $entity
-     * @param bool    $flush
-     *
-     * @return void
+     * @param Contact $entity Contact
+     * @param bool    $flush  bool
      */
     public function remove(Contact $entity, bool $flush = false): void
     {

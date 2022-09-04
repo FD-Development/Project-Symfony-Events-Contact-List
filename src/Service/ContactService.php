@@ -20,11 +20,15 @@ class ContactService implements ContactServiceInterface
 {
     /**
      * Contact repository.
+     *
+     * @var ContactRepository ContactRepository
      */
     private ContactRepository $contactRepository;
 
     /**
      * Paginator.
+     *
+     * @var PaginationInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
@@ -58,10 +62,9 @@ class ContactService implements ContactServiceInterface
     }
 
     /**
-     * Save entity
-     * @param Contact $contact
+     * Save entity.
      *
-     * @return void
+     * @param Contact $contact Contact entity
      */
     public function save(Contact $contact): void
     {
@@ -69,10 +72,9 @@ class ContactService implements ContactServiceInterface
     }
 
     /**
-     * Delete entity
-     * @param Contact $contact
+     * Delete entity.
      *
-     * @return void
+     * @param Contact $contact Contact entity
      */
     public function delete(Contact $contact): void
     {

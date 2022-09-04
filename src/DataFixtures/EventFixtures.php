@@ -55,8 +55,9 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
     }
 
     /**
-     * Gets Dependencies
-     * @return string[]
+     * Gets Dependencies.
+     *
+     * @return string[] Dependencies
      */
     public function getDependencies(): array
     {

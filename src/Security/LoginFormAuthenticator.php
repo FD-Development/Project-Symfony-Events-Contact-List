@@ -43,6 +43,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     /**
      * URL Generator.
+     *
+     * @var UrlGeneratorInterface Generator Url
      */
     private UrlGeneratorInterface $urlGenerator;
 

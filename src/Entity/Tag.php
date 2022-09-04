@@ -1,7 +1,8 @@
 <?php
 /**
- * Tag entity
+ * Tag entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\TagRepository;
@@ -15,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tag
 {
     /**
+     * Id.
+     *
      * @var int Id
      */
     #[ORM\Id]
@@ -23,6 +26,8 @@ class Tag
     private int $id;
 
     /**
+     * Title.
+     *
      * @var string Title
      */
     #[ORM\Column(type: 'string', length: 65)]
@@ -30,8 +35,9 @@ class Tag
     private string $title;
 
     /**
-     * Gets id
-     * @return int|null
+     * Gets id.
+     *
+     * @return int|null id
      */
     public function getId(): ?int
     {
@@ -39,8 +45,9 @@ class Tag
     }
 
     /**
-     * Gets title
-     * @return string|null
+     * Gets title.
+     *
+     * @return string|null title
      */
     public function getTitle(): ?string
     {
@@ -48,10 +55,11 @@ class Tag
     }
 
     /**
-     * Sets title
-     * @param string $title
+     * Sets title.
      *
-     * @return $this
+     * @param string $title title
+     *
+     * @return $this title
      */
     public function setTitle(string $title): self
     {
@@ -61,8 +69,9 @@ class Tag
     }
 
     /**
-     * Converts to string
-     * @return string
+     * Converts to string.
+     *
+     * @return string string
      */
     public function __toString()
     {

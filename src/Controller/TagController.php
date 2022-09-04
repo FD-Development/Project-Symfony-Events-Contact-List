@@ -21,19 +21,24 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class TagController extends AbstractController
 {
     /**
-     * @var TagServiceInterface
+     * TagServiceInterface.
+     *
+     * @var TagServiceInterface TagServiceInterface
      */
     private TagServiceInterface $tagService;
 
     /**
-     * @var TranslatorInterface
+     * TagServiceInterface.
+     *
+     * @var TranslatorInterface TagServiceInterface
      */
     private TranslatorInterface $translator;
 
     /**
      * Constructor.
-     * @param TagServiceInterface $tagService
-     * @param TranslatorInterface $translation
+     *
+     * @param TagServiceInterface $tagService  TagServiceInterface
+     * @param TranslatorInterface $translation TranslatorInterface
      */
     public function __construct(TagServiceInterface $tagService, TranslatorInterface $translation)
     {

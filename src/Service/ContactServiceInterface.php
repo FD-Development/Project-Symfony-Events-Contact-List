@@ -27,18 +27,16 @@ interface ContactServiceInterface
     public function getPaginatedList(int $page, User|UserInterface $user): PaginationInterface;
 
     /**
-     * Save entity
-     * @param Contact $contact
+     * Save entity.
      *
-     * @return void
+     * @param Contact $contact Contact entity
      */
     public function save(Contact $contact): void;
 
     /**
-     * Delete entity
-     * @param Contact $contact
+     * Delete entity.
      *
-     * @return void
+     * @param Contact $contact Contact entity
      */
     public function delete(Contact $contact): void;
 

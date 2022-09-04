@@ -25,8 +25,8 @@ class UserType extends AbstractType
      * This method is called for each type in the hierarchy starting from the
      * top most type. Type extensions can further modify the form.
      *
-     * @param FormBuilderInterface $builder
-     * @param array<string, mixed> $options
+     * @param FormBuilderInterface $builder Form Builder
+     * @param array<string, mixed> $options Options
      *
      * @see FormTypeExtensionInterface::buildForm()
      */
@@ -54,7 +54,8 @@ class UserType extends AbstractType
 
     /**
      * Configures the options for this type.
-     * @param OptionsResolver $resolver
+     *
+     * @param OptionsResolver $resolver OptionsResolver
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -66,7 +67,8 @@ class UserType extends AbstractType
      *
      * The block prefix defaults to the underscored short class name with
      * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
-     * @return string
+     *
+     * @return string Prefix
      */
     public function getBlockPrefix(): string
     {

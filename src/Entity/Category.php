@@ -2,6 +2,7 @@
 /**
  * Category Entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -18,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Category
 {
     /**
+     * Id.
+     *
      * @var int id
      */
     #[ORM\Id]
@@ -26,6 +29,8 @@ class Category
     private int $id;
 
     /**
+     * Title.
+     *
      * @var string title
      */
     #[ORM\Column(type: 'string', length: 30)]
@@ -34,8 +39,9 @@ class Category
     private string $title;
 
     /**
-     * Gets Category id
-     * @return int|null
+     * Gets Category id.
+     *
+     * @return int|null id
      */
     public function getId(): ?int
     {
@@ -43,8 +49,9 @@ class Category
     }
 
     /**
-     * Gets title
-     * @return string|null
+     * Gets title.
+     *
+     * @return string|null title
      */
     public function getTitle(): ?string
     {
@@ -52,8 +59,9 @@ class Category
     }
 
     /**
-     * Sets title
-     * @param string $title
+     * Sets title.
+     *
+     * @param string $title title
      *
      * @return $this
      */

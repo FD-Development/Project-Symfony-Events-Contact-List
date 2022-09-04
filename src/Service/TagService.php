@@ -19,16 +19,22 @@ class TagService implements TagServiceInterface
 {
     /**
      * Tag repository.
+     *
+     * @var TagRepository TagRepository
      */
     private TagRepository $tagRepository;
 
     /**
      * Event repository.
+     *
+     * @var EventRepository EventRepository
      */
     protected EventRepository $eventRepository;
 
     /**
      * Paginator.
+     *
+     * @var PaginationInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
@@ -63,10 +69,9 @@ class TagService implements TagServiceInterface
     }
 
     /**
-     * Save entity
-     * @param Tag $tag
+     * Save entity.
      *
-     * @return void
+     * @param Tag $tag Tag entity
      */
     public function save(Tag $tag): void
     {
@@ -74,10 +79,9 @@ class TagService implements TagServiceInterface
     }
 
     /**
-     * Remove entity
-     * @param Tag $tag
+     * Remove entity.
      *
-     * @return void
+     * @param Tag $tag Tag entity
      */
     public function delete(Tag $tag): void
     {

@@ -1,7 +1,8 @@
 <?php
 /**
- * Tag repository
+ * Tag repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Tag;
@@ -32,13 +33,13 @@ class TagRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
-     * @param ManagerRegistry $registry
+     *
+     * @param ManagerRegistry $registry ManagerRegistry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
     }
-
 
     /**
      * Query all records.
@@ -54,12 +55,10 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * Add entity
+     * Add entity.
      *
-     * @param Tag  $entity
-     * @param bool $flush
-     *
-     * @return void
+     * @param Tag  $entity Tag
+     * @param bool $flush  bool
      */
     public function add(Tag $entity, bool $flush = false): void
     {
@@ -74,8 +73,6 @@ class TagRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Tag $tag Tag entity
-     *
-     * @return void
      */
     public function save(Tag $tag): void
     {
@@ -87,8 +84,6 @@ class TagRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Tag $tag Tag entity
-     *
-     * @return void
      */
     public function delete(Tag $tag): void
     {
@@ -99,10 +94,8 @@ class TagRepository extends ServiceEntityRepository
     /**
      * Remove entity.
      *
-     * @param Tag  $entity
-     * @param bool $flush
-     *
-     * @return void
+     * @param Tag  $entity Tag
+     * @param bool $flush  bool
      */
     public function remove(Tag $entity, bool $flush = false): void
     {
@@ -116,11 +109,11 @@ class TagRepository extends ServiceEntityRepository
     /**
      * Finds one Tag by given id.
      *
-     * @param $value
+     * @param int $value Id of tag
+     *
+     * @return Tag|null Tag
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
-     *
-     * @return Tag|null
      */
     public function findOneById($value): ?Tag
     {

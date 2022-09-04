@@ -1,7 +1,8 @@
 <?php
 /**
- * User repository
+ * User repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\User;
@@ -38,7 +39,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Constructor.
      *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry ManagerRegistry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -62,8 +63,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Deletes all records associated to the user.
      *
      * @param User $user User entity
-     *
-     * @return void
      */
     public function deleteAssociated(User $user): void
     {
@@ -86,10 +85,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Add entity.
      *
-     * @param User $entity
-     * @param bool $flush
-     *
-     * @return void
+     * @param User $entity User
+     * @param bool $flush  bool
      */
     public function add(User $entity, bool $flush = false): void
     {
@@ -103,10 +100,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Remove entity.
      *
-     * @param User $entity
-     * @param bool $flush
-     *
-     * @return void
+     * @param User $entity User
+     * @param bool $flush  bool
      */
     public function remove(User $entity, bool $flush = false): void
     {
@@ -120,10 +115,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
-     * @param PasswordAuthenticatedUserInterface $user
-     * @param string                             $newHashedPassword
-     *
-     * @return void
+     * @param PasswordAuthenticatedUserInterface $user              User
+     * @param string                             $newHashedPassword Hashed password
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
@@ -140,8 +133,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Save entity.
      *
      * @param User $user Event entity
-     *
-     * @return void
      */
     public function save(User $user): void
     {
@@ -153,8 +144,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Delete entity.
      *
      * @param User $user User entity
-     *
-     * @return void
      */
     public function delete(User $user): void
     {

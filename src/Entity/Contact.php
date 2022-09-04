@@ -2,6 +2,7 @@
 /**
  * Contact entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
@@ -16,6 +17,8 @@ use DateTime;
 class Contact
 {
     /**
+     * Id.
+     *
      * @var int id
      */
     #[ORM\Id]
@@ -24,6 +27,8 @@ class Contact
     private int $id;
 
     /**
+     * Name.
+     *
      * @var string name
      */
     #[ORM\Column(type: 'string', length: 155)]
@@ -31,6 +36,8 @@ class Contact
     private string $name;
 
     /**
+     * Surname.
+     *
      * @var string|null surname
      */
     #[ORM\Column(type: 'string', length: 155, nullable: true)]
@@ -38,6 +45,8 @@ class Contact
     private ?string $surname;
 
     /**
+     * Email.
+     *
      * @var string|null email
      */
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
@@ -46,6 +55,8 @@ class Contact
     private ?string $email;
 
     /**
+     * Telephone number.
+     *
      * @var string|null telephone number
      */
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
@@ -54,6 +65,8 @@ class Contact
     private ?string $telephone;
 
     /**
+     * Birthdate.
+     *
      * @var DateTime|null birthdate
      */
     #[ORM\Column(type: 'date', nullable: true)]
@@ -61,6 +74,8 @@ class Contact
     private ?DateTime $birthdate;
 
     /**
+     * Notes.
+     *
      * @var string|null notes
      */
     #[ORM\Column(type: 'text', nullable: true)]
@@ -69,6 +84,8 @@ class Contact
     private ?string $note;
 
     /**
+     * Category.
+     *
      * @var Category|null Associated Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
@@ -77,6 +94,8 @@ class Contact
     private ?Category $category;
 
     /**
+     * Author.
+     *
      * @var User Associated User
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
@@ -86,16 +105,19 @@ class Contact
     private User $author;
 
     /**
-     * Gets Contact id
-     * @return int|null
+     * Gets Contact id.
+     *
+     * @return int|null id
      */
     public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * Gets name
-     * @return string|null
+     * Gets name.
+     *
+     * @return string|null name
      */
     public function getName(): ?string
     {
@@ -103,10 +125,11 @@ class Contact
     }
 
     /**
-     * Sets name
-     * @param string $name
+     * Sets name.
      *
-     * @return $this
+     * @param string $name name
+     *
+     * @return $this name
      */
     public function setName(string $name): self
     {
@@ -116,8 +139,9 @@ class Contact
     }
 
     /**
-     * Gets surname
-     * @return string|null
+     * Gets surname.
+     *
+     * @return string|null surname
      */
     public function getSurname(): ?string
     {
@@ -125,10 +149,11 @@ class Contact
     }
 
     /**
-     * Sets surname
-     * @param string|null $surname
+     * Sets surname.
      *
-     * @return $this
+     * @param string|null $surname surname
+     *
+     * @return $this surname
      */
     public function setSurname(?string $surname): self
     {
@@ -138,8 +163,9 @@ class Contact
     }
 
     /**
-     * Gets email
-     * @return string|null
+     * Gets email.
+     *
+     * @return string|null email
      */
     public function getEmail(): ?string
     {
@@ -147,10 +173,11 @@ class Contact
     }
 
     /**
-     * Sets email
-     * @param string $email
+     * Sets email.
      *
-     * @return $this
+     * @param string $email email
+     *
+     * @return $this email
      */
     public function setEmail(string $email): self
     {
@@ -160,8 +187,9 @@ class Contact
     }
 
     /**
-     * Gets telephone
-     * @return string|null
+     * Gets telephone.
+     *
+     * @return string|null telephone
      */
     public function getTelephone(): ?string
     {
@@ -169,10 +197,11 @@ class Contact
     }
 
     /**
-     * Sets telephone
-     * @param string|null $telephone
+     * Sets telephone.
      *
-     * @return $this
+     * @param string|null $telephone telephone
+     *
+     * @return $this telephone
      */
     public function setTelephone(?string $telephone): self
     {
@@ -182,8 +211,9 @@ class Contact
     }
 
     /**
-     * Gets birthdate
-     * @return \DateTimeInterface|null
+     * Gets birthdate.
+     *
+     * @return \DateTimeInterface|null birthdate
      */
     public function getBirthdate(): ?\DateTimeInterface
     {
@@ -191,10 +221,11 @@ class Contact
     }
 
     /**
-     * Sets birthdate
-     * @param DateTime|null $birthdate
+     * Sets birthdate.
      *
-     * @return $this
+     * @param DateTime|null $birthdate birthdate
+     *
+     * @return $this birthdate
      */
     public function setBirthdate(?DateTime $birthdate): self
     {
@@ -204,8 +235,9 @@ class Contact
     }
 
     /**
-     * Gets note
-     * @return string|null
+     * Gets note.
+     *
+     * @return string|null note
      */
     public function getNote(): ?string
     {
@@ -213,10 +245,11 @@ class Contact
     }
 
     /**
-     * Sets note
-     * @param string|null $note
+     * Sets note.
      *
-     * @return $this
+     * @param string|null $note note
+     *
+     * @return $this note
      */
     public function setNote(?string $note): self
     {
@@ -226,8 +259,9 @@ class Contact
     }
 
     /**
-     * Gets category
-     * @return Category|null
+     * Gets category.
+     *
+     * @return Category|null category
      */
     public function getCategory(): ?Category
     {
@@ -235,10 +269,11 @@ class Contact
     }
 
     /**
-     * Sets category
-     * @param Category|null $category
+     * Sets category.
      *
-     * @return $this
+     * @param Category|null $category category
+     *
+     * @return $this category
      */
     public function setCategory(?Category $category): self
     {
@@ -248,8 +283,9 @@ class Contact
     }
 
     /**
-     * Gets author
-     * @return User|null
+     * Gets author.
+     *
+     * @return User|null author
      */
     public function getAuthor(): ?User
     {
@@ -257,10 +293,11 @@ class Contact
     }
 
     /**
-     * Sets author
-     * @param User|null $author
+     * Sets author.
      *
-     * @return $this
+     * @param User|null $author author
+     *
+     * @return $this author
      */
     public function setAuthor(?User $author): self
     {

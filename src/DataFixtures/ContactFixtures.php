@@ -46,8 +46,9 @@ class ContactFixtures extends AbstractBaseFixtures implements DependentFixtureIn
     }
 
     /**
-     * Gets Dependencies
-     * @return string[]
+     * Gets Dependencies.
+     *
+     * @return string[] Dependencies
      */
     public function getDependencies(): array
     {

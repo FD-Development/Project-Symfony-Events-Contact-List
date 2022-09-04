@@ -16,10 +16,14 @@ class UserFixtures extends AbstractBaseFixtures
 {
     /**
      * Password hasher.
+     *
+     * @var UserPasswordHasherInterface Password Hasher
      */
     private UserPasswordHasherInterface $passwordHasher;
 
     /**
+     * Constructor.
+     *
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
      */
     public function __construct(UserPasswordHasherInterface $passwordHasher)

@@ -1,22 +1,24 @@
 <?php
 /**
- * AppFixtures
+ * AppFixtures.
  */
+
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class AppFixtures
+ * Class AppFixtures.
  */
 class AppFixtures extends Fixture
 {
     /**
-     * Loads Fixtures
-     * @param ObjectManager $manager
+     * Loads Fixtures.
      *
-     * @return void
+     * @param ObjectManager $manager Object manager
+     *
+     * @return void loads
      */
     public function load(ObjectManager $manager): void
     {

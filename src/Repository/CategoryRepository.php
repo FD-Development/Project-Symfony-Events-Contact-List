@@ -1,7 +1,8 @@
 <?php
 /**
- * Category repository
+ * Category repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -32,13 +33,13 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
-     * @param ManagerRegistry $registry
+     *
+     * @param ManagerRegistry $registry ManagerRegistry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
     }
-
 
     /**
      * Query all records.
@@ -56,10 +57,8 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Add entity.
      *
-     * @param Category $entity
-     * @param bool     $flush
-     *
-     * @return void
+     * @param Category $entity Category
+     * @param bool     $flush  bool
      */
     public function add(Category $entity, bool $flush = false): void
     {
@@ -74,8 +73,6 @@ class CategoryRepository extends ServiceEntityRepository
      * Save entity.
      *
      * @param Category $category Category entity
-     *
-     * @return void
      */
     public function save(Category $category): void
     {
@@ -87,8 +84,6 @@ class CategoryRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Category $category Category entity
-     *
-     * @return void
      */
     public function delete(Category $category): void
     {
@@ -98,10 +93,9 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Remove entity.
-     * @param Category $entity
-     * @param bool     $flush
      *
-     * @return void
+     * @param Category $entity Category
+     * @param bool     $flush  bool
      */
     public function remove(Category $entity, bool $flush = false): void
     {
@@ -115,9 +109,9 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Find One category by given id.
      *
-     * @param $value
+     * @param int $value Id of category
      *
-     * @return Category|null
+     * @return Category|null Category
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */

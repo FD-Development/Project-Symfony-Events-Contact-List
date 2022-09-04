@@ -2,6 +2,7 @@
 /**
  * Event Entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\EventRepository;
@@ -19,6 +20,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class Event
 {
     /**
+     * Id.
+     *
      * @var int id
      */
     #[ORM\Id]
@@ -27,6 +30,8 @@ class Event
     private int $id;
 
     /**
+     * Title.
+     *
      * @var string title
      */
     #[ORM\Column(type: 'string', length: 64)]
@@ -36,6 +41,8 @@ class Event
     private string $title;
 
     /**
+     * Description.
+     *
      * @var string|null description
      */
     #[ORM\Column(type: 'text', nullable: true)]
@@ -44,6 +51,8 @@ class Event
     private ?string $description;
 
     /**
+     * Category.
+     *
      * @var Category Associated Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
@@ -53,6 +62,8 @@ class Event
     private Category $category;
 
     /**
+     * Tags.
+     *
      * @var Collection<Tag> Associated Tags
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
@@ -62,6 +73,8 @@ class Event
     private Collection $tags;
 
     /**
+     * Author.
+     *
      * @var User Associated User
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
@@ -71,6 +84,8 @@ class Event
     private User $author;
 
     /**
+     * Time from.
+     *
      * @var \DateTimeInterface Time at which the event starts
      */
     #[ORM\Column(type: 'time')]
@@ -78,6 +93,8 @@ class Event
     private \DateTimeInterface $timeFrom;
 
     /**
+     * Date from.
+     *
      * @var \DateTimeInterface Date at which the event starts
      */
     #[ORM\Column(type: 'date')]
@@ -86,6 +103,8 @@ class Event
     private \DateTimeInterface $dateFrom;
 
     /**
+     * Time to.
+     *
      * @var \DateTimeInterface Time at which the event ends
      */
     #[ORM\Column(type: 'time')]
@@ -93,6 +112,8 @@ class Event
     private \DateTimeInterface $timeTo;
 
     /**
+     * Date to.
+     *
      * @var \DateTimeInterface Date at which the event ends
      */
     #[ORM\Column(type: 'date')]
@@ -101,7 +122,9 @@ class Event
 
     /**
      * Form validation.
+     *
      * Prevents the user to create an event which ends before it starts.
+     *
      * @param $context ExecutionContextInterface
      */
     #[Assert\Callback]
@@ -119,7 +142,7 @@ class Event
     }
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -127,8 +150,9 @@ class Event
     }
 
     /**
-     * Gets id
-     * @return int|null
+     * Gets id.
+     *
+     * @return int|null id
      */
     public function getId(): ?int
     {
@@ -136,8 +160,9 @@ class Event
     }
 
     /**
-     * Gets title
-     * @return string|null
+     * Gets title.
+     *
+     * @return string|null title
      */
     public function getTitle(): ?string
     {
@@ -145,10 +170,11 @@ class Event
     }
 
     /**
-     * Sets title
-     * @param string $title
+     * Sets title.
      *
-     * @return $this
+     * @param string $title title
+     *
+     * @return $this title
      */
     public function setTitle(string $title): self
     {
@@ -158,8 +184,9 @@ class Event
     }
 
     /**
-     * Get description
-     * @return string|null
+     * Get description.
+     *
+     * @return string|null description
      */
     public function getDescription(): ?string
     {
@@ -167,10 +194,11 @@ class Event
     }
 
     /**
-     * Sets description
-     * @param string|null $description
+     * Sets description.
      *
-     * @return $this
+     * @param string|null $description description
+     *
+     * @return $this description
      */
     public function setDescription(?string $description): self
     {
@@ -180,8 +208,9 @@ class Event
     }
 
     /**
-     * Gets category
-     * @return Category|null
+     * Gets category.
+     *
+     * @return Category|null category
      */
     public function getCategory(): ?Category
     {
@@ -189,10 +218,11 @@ class Event
     }
 
     /**
-     * Sets category
-     * @param Category|null $category
+     * Sets category.
      *
-     * @return $this
+     * @param Category|null $category category
+     *
+     * @return $this category
      */
     public function setCategory(?Category $category): self
     {
@@ -202,8 +232,9 @@ class Event
     }
 
     /**
-     * Gets tag
-     * @return Collection<int, Tag>
+     * Gets tag.
+     *
+     * @return Collection<int, Tag> tags
      */
     public function getTags(): Collection
     {
@@ -211,10 +242,11 @@ class Event
     }
 
     /**
-     * Sets tag
-     * @param Tag $tag
+     * Sets tag.
      *
-     * @return $this
+     * @param Tag $tag tag
+     *
+     * @return $this tag
      */
     public function addTag(Tag $tag): self
     {
@@ -226,10 +258,11 @@ class Event
     }
 
     /**
-     * Removes tag
-     * @param Tag $tag
+     * Removes tag.
      *
-     * @return $this
+     * @param Tag $tag tag
+     *
+     * @return $this tag
      */
     public function removeTag(Tag $tag): self
     {
@@ -239,8 +272,9 @@ class Event
     }
 
     /**
-     * Gets tag
-     * @return User|null
+     * Gets author.
+     *
+     * @return User|null author
      */
     public function getAuthor(): ?User
     {
@@ -248,10 +282,11 @@ class Event
     }
 
     /**
-     * Sets author
-     * @param User|null $author
+     * Sets author.
      *
-     * @return $this
+     * @param User|null $author author
+     *
+     * @return $this author
      */
     public function setAuthor(?User $author): self
     {
@@ -261,8 +296,9 @@ class Event
     }
 
     /**
-     * Gets TimeFrom
-     * @return \DateTimeInterface|null
+     * Gets TimeFrom.
+     *
+     * @return \DateTimeInterface|null Time
      */
     public function getTimeFrom(): ?\DateTimeInterface
     {
@@ -270,10 +306,11 @@ class Event
     }
 
     /**
-     * Sets TimeFrom
-     * @param \DateTimeInterface $timeFrom
+     * Sets TimeFrom.
      *
-     * @return $this
+     * @param \DateTimeInterface $timeFrom Time
+     *
+     * @return $this Time
      */
     public function setTimeFrom(\DateTimeInterface $timeFrom): self
     {
@@ -283,8 +320,9 @@ class Event
     }
 
     /**
-     * Gets DateFrom
-     * @return \DateTimeInterface|null
+     * Gets DateFrom.
+     *
+     * @return \DateTimeInterface|null Date
      */
     public function getDateFrom(): ?\DateTimeInterface
     {
@@ -292,10 +330,11 @@ class Event
     }
 
     /**
-     * Sets DateFrom
-     * @param \DateTimeInterface $dateFrom
+     * Sets DateFrom.
      *
-     * @return $this
+     * @param \DateTimeInterface $dateFrom Date
+     *
+     * @return $this Date
      */
     public function setDateFrom(\DateTimeInterface $dateFrom): self
     {
@@ -305,8 +344,9 @@ class Event
     }
 
     /**
-     * Gets TimeTo
-     * @return \DateTimeInterface|null
+     * Gets TimeTo.
+     *
+     * @return \DateTimeInterface|null Time
      */
     public function getTimeTo(): ?\DateTimeInterface
     {
@@ -314,10 +354,11 @@ class Event
     }
 
     /**
-     * Sets TimeTo
-     * @param \DateTimeInterface $timeTo
+     * Sets TimeTo.
      *
-     * @return $this
+     * @param \DateTimeInterface $timeTo Time
+     *
+     * @return $this Time
      */
     public function setTimeTo(\DateTimeInterface $timeTo): self
     {
@@ -327,8 +368,9 @@ class Event
     }
 
     /**
-     * Gets DateTo
-     * @return \DateTimeInterface|null
+     * Gets DateTo.
+     *
+     * @return \DateTimeInterface|null Date
      */
     public function getDateTo(): ?\DateTimeInterface
     {
@@ -336,10 +378,11 @@ class Event
     }
 
     /**
-     * Sets DateTo
-     * @param \DateTimeInterface $dateTo
+     * Sets DateTo.
      *
-     * @return $this
+     * @param \DateTimeInterface $dateTo Date
+     *
+     * @return $this Date
      */
     public function setDateTo(\DateTimeInterface $dateTo): self
     {

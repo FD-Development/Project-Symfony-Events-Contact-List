@@ -18,11 +18,15 @@ class UserService implements UserServiceInterface
 {
     /**
      * User repository.
+     *
+     * @var UserRepository UserRepository
      */
     private UserRepository $userRepository;
 
     /**
      * Paginator.
+     *
+     * @var PaginationInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
@@ -55,10 +59,9 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * Save entity
-     * @param User $user
+     * Save entity.
      *
-     * @return void
+     * @param User $user User entity
      */
     public function save(User $user): void
     {
@@ -66,10 +69,9 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * Delete entity
-     * @param User $user
+     * Delete entity.
      *
-     * @return void
+     * @param User $user User entity
      */
     public function delete(User $user): void
     {

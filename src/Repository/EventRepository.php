@@ -1,7 +1,8 @@
 <?php
 /**
- * Event repository
+ * Event repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Event;
@@ -35,13 +36,13 @@ class EventRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
-     * @param ManagerRegistry $registry
+     *
+     * @param ManagerRegistry $registry ManagerRegistry
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Event::class);
     }
-
 
     /**
      * Query all records.
@@ -130,13 +131,10 @@ class EventRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
-
     /**
      * Save entity.
      *
      * @param Event $event Event entity
-     *
-     * @return void
      */
     public function save(Event $event): void
     {
@@ -148,8 +146,6 @@ class EventRepository extends ServiceEntityRepository
      * Delete entity.
      *
      * @param Event $event Event entity
-     *
-     * @return void
      */
     public function delete(Event $event): void
     {
@@ -158,12 +154,10 @@ class EventRepository extends ServiceEntityRepository
     }
 
     /**
-     * Remove entity
+     * Remove entity.
      *
-     * @param Event $entity
-     * @param bool  $flush
-     *
-     * @return void
+     * @param Event $entity Event
+     * @param bool  $flush  bool
      */
     public function remove(Event $entity, bool $flush = false): void
     {

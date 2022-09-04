@@ -24,16 +24,22 @@ class UserController extends AbstractController
 {
     /**
      * User service.
+     *
+     * @var UserServiceInterface UserServiceInterface
      */
     private UserServiceInterface $userService;
 
     /**
      * Translator Interface.
+     *
+     * @var TranslatorInterface TranslatorInterface
      */
     private TranslatorInterface $translator;
 
     /**
      * Password hasher.
+     *
+     * @var UserPasswordHasherInterface UserPasswordHasherInterface
      */
     protected UserPasswordHasherInterface $passwordHasher;
 

@@ -21,19 +21,24 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CategoryController extends AbstractController
 {
     /**
-     * @var CategoryServiceInterface
+     * CategoryServiceInterface.
+     *
+     * @var CategoryServiceInterface CategoryServiceInterface
      */
     private CategoryServiceInterface $categoryService;
 
     /**
-     * @var TranslatorInterface
+     * TranslatorInterface.
+     *
+     * @var TranslatorInterface TranslatorInterface
      */
     private TranslatorInterface $translator;
 
     /**
-     * Constructor
-     * @param CategoryServiceInterface $categoryService
-     * @param TranslatorInterface      $translation
+     * Constructor.
+     *
+     * @param CategoryServiceInterface $categoryService CategoryServiceInterface
+     * @param TranslatorInterface      $translation     TranslatorInterface
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translation)
     {
