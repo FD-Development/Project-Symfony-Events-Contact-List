@@ -156,7 +156,7 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Delete entity</dd>
+<dd>Delete entity.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Service-EventServiceInterface.html#method_getEventsByDate">getEventsByDate()</a>
@@ -184,7 +184,7 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Save entity</dd>
+<dd>Save entity.</dd>
 
         </dl>
 
@@ -210,11 +210,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/EventServiceInterface.php"><a href="files/src-service-eventserviceinterface.html"><abbr title="src/Service/EventServiceInterface.php">EventServiceInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Delete entity</p>
+        <p class="phpdocumentor-summary">Delete entity.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -228,7 +228,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Event.html"><abbr title="\App\Entity\Event">Event</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Event entity</p>
+</section>
+
             </dd>
             </dl>
 
@@ -261,7 +263,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getEventsByDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|<abbr title="\Symfony\Component\Security\Core\User\UserInterface">UserInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$author</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">getEventsByDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|<abbr title="\Symfony\Component\Security\Core\User\UserInterface">UserInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$author</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -295,7 +297,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$filters</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string, int&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Array of potential filters</p>
@@ -335,7 +337,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getPaginatedList</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|<abbr title="\Symfony\Component\Security\Core\User\UserInterface">UserInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$author</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">getPaginatedList</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|<abbr title="\Symfony\Component\Security\Core\User\UserInterface">UserInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$author</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -360,7 +362,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$filters</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string, int&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Array of potential filters</p>
@@ -400,7 +402,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getUpcomingEvents</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|<abbr title="\Symfony\Component\Security\Core\User\UserInterface">UserInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$author</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">getUpcomingEvents</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|<abbr title="\Symfony\Component\Security\Core\User\UserInterface">UserInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$author</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -434,7 +436,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$filters</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string, int&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Array of potential filters</p>
@@ -466,11 +468,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/EventServiceInterface.php"><a href="files/src-service-eventserviceinterface.html"><abbr title="src/Service/EventServiceInterface.php">EventServiceInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Save entity</p>
+        <p class="phpdocumentor-summary">Save entity.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -484,7 +486,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Event.html"><abbr title="\App\Entity\Event">Event</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Event entity</p>
+</section>
+
             </dd>
             </dl>
 
