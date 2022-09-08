@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\User;
 use App\Form\Type\EventType;
 use App\Service\EventServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -157,6 +158,7 @@ class EventController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
         $event = new Event();
         $event->setAuthor($user);

@@ -8,6 +8,8 @@ namespace App\Repository;
 use App\Entity\Contact;
 use App\Entity\Category;
 use App\Entity\User;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -51,7 +53,7 @@ class ContactRepository extends ServiceEntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll($user): QueryBuilder
+    public function queryAll(User|UserInterface $user): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->select(

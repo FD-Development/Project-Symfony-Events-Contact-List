@@ -8,7 +8,10 @@ namespace App\Service;
 
 use App\Repository\TagRepository;
 use App\Repository\EventRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Tag;
 
@@ -34,7 +37,7 @@ class TagService implements TagServiceInterface
     /**
      * Paginator.
      *
-     * @var PaginationInterface PaginationInterface
+     * @var PaginatorInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 

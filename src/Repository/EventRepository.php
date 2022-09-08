@@ -10,8 +10,11 @@ use App\Entity\Category;
 use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @extends ServiceEntityRepository<Event>
@@ -63,12 +66,12 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records by specific user.
      *
-     * @param User  $user   User Entity
-     * @param array $filter Filters array
+     * @param User|UserInterface    $user   User Entity
+     * @param array<string, object> $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryByAuthor(User $user, array $filter = []): QueryBuilder
+    public function queryByAuthor(User|UserInterface $user, array $filter = []): QueryBuilder
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
@@ -87,13 +90,13 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records that contain specified date.
      *
-     * @param User   $user   User Entity
-     * @param string $date   Date string
-     * @param array  $filter Filters array
+     * @param User|UserInterface    $user   User Entity
+     * @param string                $date   Date string
+     * @param array<string, object> $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryByDate(User $user, string $date, array $filter = []): QueryBuilder
+    public function queryByDate(User|UserInterface $user, string $date, array $filter = []): QueryBuilder
     {
         $queryBuilder = $this->queryByAuthor($user, $filter);
         $queryBuilder
@@ -113,13 +116,13 @@ class EventRepository extends ServiceEntityRepository
     /**
      * Query all records that start in the after the specified date.
      *
-     * @param User   $user   User Entity
-     * @param string $date   Date string
-     * @param array  $filter Filters array
+     * @param User|UserInterface    $user   User Entit  y
+     * @param string                $date   Date string
+     * @param array<string, object> $filter Filters array
      *
      * @return QueryBuilder Query builder
      */
-    public function queryUpcoming(User $user, string $date, array $filter = []): QueryBuilder
+    public function queryUpcoming(User|UserInterface $user, string $date, array $filter = []): QueryBuilder
     {
         $queryBuilder = $this->queryByAuthor($user, $filter);
 

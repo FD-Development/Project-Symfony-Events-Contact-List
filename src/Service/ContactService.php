@@ -7,6 +7,8 @@
 namespace App\Service;
 
 use App\Entity\User;
+use App\Entity\Tag;
+use App\Repository\TagRepository;
 use App\Repository\ContactRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -26,9 +28,15 @@ class ContactService implements ContactServiceInterface
     private ContactRepository $contactRepository;
 
     /**
+     * Tag repository.
+     *
+     * @var TagRepository tagRepository
+     */
+    private TagRepository $tagRepository;
+    /**
      * Paginator.
      *
-     * @var PaginationInterface PaginationInterface
+     * @var PaginatorInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
@@ -36,11 +44,13 @@ class ContactService implements ContactServiceInterface
      * Constructor.
      *
      * @param ContactRepository  $contactRepository Contact repository
+     * @param TagRepository      $tagRepository     Tag repository
      * @param PaginatorInterface $paginator         Paginator
      */
-    public function __construct(ContactRepository $contactRepository, PaginatorInterface $paginator)
+    public function __construct(ContactRepository $contactRepository, TagRepository $tagRepository, PaginatorInterface $paginator)
     {
         $this->contactRepository = $contactRepository;
+        $this->tagRepository = $tagRepository;
         $this->paginator = $paginator;
     }
 

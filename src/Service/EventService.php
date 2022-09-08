@@ -6,12 +6,14 @@
 
 namespace App\Service;
 
+use App\Entity\Event;
+use App\Entity\Tag;
+use App\Entity\User;
 use App\Repository\EventRepository;
+use App\Repository\TagRepository;
+use DateTime;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Entity\Event;
-use App\Entity\User;
-use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -29,7 +31,7 @@ class EventService implements EventServiceInterface
     /**
      * Paginator.
      *
-     * @var PaginationInterface PaginationInterface
+     * @var PaginatorInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
@@ -48,19 +50,28 @@ class EventService implements EventServiceInterface
     private TagServiceInterface $tagService;
 
     /**
+     * Tag repository.
+     *
+     * @var TagRepository Tag repostiory
+     */
+    private TagRepository $tagRepository;
+
+    /**
      * Constructor.
      *
      * @param EventRepository          $eventRepository Event repository
      * @param PaginatorInterface       $paginator       Paginator
      * @param CategoryServiceInterface $categoryService Category service interface
      * @param TagServiceInterface      $tagService      Tag service interface
+     * @param TagRepository            $tagRepository   tag repository
      */
-    public function __construct(EventRepository $eventRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService, TagServiceInterface $tagService)
+    public function __construct(EventRepository $eventRepository, PaginatorInterface $paginator, CategoryServiceInterface $categoryService, TagServiceInterface $tagService, TagRepository $tagRepository)
     {
         $this->eventRepository = $eventRepository;
         $this->paginator = $paginator;
         $this->categoryService = $categoryService;
         $this->tagService = $tagService;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -68,7 +79,7 @@ class EventService implements EventServiceInterface
      *
      * @param int                $page    Page number
      * @param User|UserInterface $author  Author
-     * @param array              $filters Array of potential filters
+     * @param array<string, int> $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -89,7 +100,7 @@ class EventService implements EventServiceInterface
      * @param int                $page    Page number
      * @param User|UserInterface $author  Author
      * @param DateTime           $date    Date to search by
-     * @param array              $filters Array of potential filters
+     * @param array<string, int> $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -111,7 +122,7 @@ class EventService implements EventServiceInterface
      * @param int                $page    Page number
      * @param User|UserInterface $author  Author
      * @param DateTime           $date    Date to search by
-     * @param array              $filters Array of potential filters
+     * @param array<string, int> $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */

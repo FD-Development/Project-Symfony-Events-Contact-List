@@ -9,6 +9,7 @@ use App\Repository\EventRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -64,7 +65,7 @@ class Event
     /**
      * Tags.
      *
-     * @var Collection<Tag> Associated Tags
+     * @var Collection<int, Tag> Associated Tags
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinColumn(nullable: false)]
@@ -274,9 +275,9 @@ class Event
     /**
      * Gets author.
      *
-     * @return User|null author
+     * @return User|UserInterface author
      */
-    public function getAuthor(): ?User
+    public function getAuthor(): User|UserInterface
     {
         return $this->author;
     }
@@ -284,11 +285,11 @@ class Event
     /**
      * Sets author.
      *
-     * @param User|null $author author
+     * @param User $author author
      *
      * @return $this author
      */
-    public function setAuthor(?User $author): self
+    public function setAuthor(User $author): self
     {
         $this->author = $author;
 

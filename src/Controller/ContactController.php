@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\User;
 use App\Form\Type\ContactType;
 use App\Service\ContactServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -97,6 +98,7 @@ class ContactController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
         $contact = new Contact();
         $contact->setAuthor($user);

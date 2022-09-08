@@ -295,11 +295,11 @@ class Contact
     /**
      * Sets author.
      *
-     * @param User|null $author author
+     * @param User $author author
      *
      * @return $this author
      */
-    public function setAuthor(?User $author): self
+    public function setAuthor(User $author): self
     {
         $this->author = $author;
 

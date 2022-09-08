@@ -9,6 +9,8 @@ namespace App\Service;
 use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
 use App\Repository\ContactRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Category;
@@ -42,7 +44,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Paginator.
      *
-     * @var PaginationInterface PaginationInterface
+     * @var PaginatorInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 

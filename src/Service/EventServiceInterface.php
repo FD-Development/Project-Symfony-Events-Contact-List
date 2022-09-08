@@ -22,7 +22,7 @@ interface EventServiceInterface
      *
      * @param int                $page    Page number
      * @param User|UserInterface $author  Author
-     * @param array              $filters Array of potential filters
+     * @param array<string, int> $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -34,7 +34,7 @@ interface EventServiceInterface
      * @param int                $page    Page number
      * @param User|UserInterface $author  Author
      * @param DateTime           $date    Date to search by
-     * @param array              $filters Array of potential filters
+     * @param array<string, int> $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -46,7 +46,7 @@ interface EventServiceInterface
      * @param int                $page    Page number
      * @param User|UserInterface $author  Author
      * @param DateTime           $date    Date to search by
-     * @param array              $filters Array of potential filters
+     * @param array<string, int> $filters Array of potential filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */

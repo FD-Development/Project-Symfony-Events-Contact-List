@@ -26,7 +26,7 @@ class UserService implements UserServiceInterface
     /**
      * Paginator.
      *
-     * @var PaginationInterface PaginationInterface
+     * @var PaginatorInterface PaginationInterface
      */
     private PaginatorInterface $paginator;
 
