@@ -28,8 +28,8 @@
         {{ form_end(form) }}
          {% if is_granted('ROLE_ADMIN') %}
              <div id="form-buttons">
-                 <a class="btn btn-warning" href="{{  url('user_index') }}" title=" {{ 'action.back_to_list' }}">
-                     {{ 'action.back_to_list' }}
+                 <a class="btn btn-warning" href="{{  url('user_index') }}" title=" {{ 'action.back_to_list'|trans }}">
+                     {{ 'action.back_to_list'|trans }}
                  </a>
              </div>
              {% else %}

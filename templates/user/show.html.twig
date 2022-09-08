@@ -19,6 +19,12 @@
                 {{ 'action.delete'|trans }}
             </a>
         </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div id="form-buttons">
+        <a class="btn btn-warning" href="{{  url('user_index') }}" title=" {{ 'action.back_to_list'|trans }}">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    {% endif %}
     {% else %}
         <p>
             {{ 'message.page_not_available'|trans }}
