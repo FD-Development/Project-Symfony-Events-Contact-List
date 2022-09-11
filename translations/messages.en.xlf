@@ -257,7 +257,10 @@
       </trans-unit>
 
 
-
+      <trans-unit id="title.login">
+        <source>title.login</source>
+        <target>Please Sign In </target>
+      </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
         <target>List is empty.</target>
@@ -281,6 +284,10 @@
       <trans-unit id="message.edited_successfully">
         <source>message.edited_successfully</source>
         <target>Edited Successfully! </target>
+      </trans-unit>
+      <trans-unit id="message.logged_as">
+        <source>message.logged_as</source>
+        <target>Logged as: </target>
       </trans-unit>
       <trans-unit id="action.logout">
         <source>action.logout</source>

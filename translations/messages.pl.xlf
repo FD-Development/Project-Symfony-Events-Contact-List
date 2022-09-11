@@ -55,11 +55,11 @@
       </trans-unit>
       <trans-unit id="label.time_to">
         <source>label.time_to</source>
-        <target>Początek - czas</target>
+        <target>Koniec - czas</target>
       </trans-unit>
       <trans-unit id="label.time_from">
         <source>label.time_from</source>
-        <target>Koniec - czas</target>
+        <target>Początek - czas</target>
       </trans-unit>
       <trans-unit id="title.event_upcoming">
         <source>title.event_upcoming</source>
@@ -257,7 +257,10 @@
       </trans-unit>
 
 
-
+      <trans-unit id="title.login">
+        <source>title.login</source>
+        <target>Logowanie</target>
+      </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
         <target>Lista jest pusta.</target>
@@ -282,13 +285,17 @@
         <source>message.edited_successfully</source>
         <target>Edytowano pomyślnie! </target>
       </trans-unit>
+      <trans-unit id="message.logged_as">
+        <source>message.logged_as</source>
+        <target>Zalogowano jako: </target>
+      </trans-unit>
       <trans-unit id="action.logout">
         <source>action.logout</source>
         <target>Wyloguj</target>
       </trans-unit>
       <trans-unit id="action.login">
         <source>action.login</source>
-        <target>Powrót do logowania</target>
+        <target>Zaloguj</target>
       </trans-unit>
       <trans-unit id="action.cancel">
         <source>action.cancel</source>

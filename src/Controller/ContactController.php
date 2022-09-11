@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Form\Type\ContactType;
 use App\Service\ContactServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -184,7 +185,7 @@ class ContactController extends AbstractController
     public function delete(Request $request, Contact $contact): Response
     {
         $form = $this->createForm(
-            ContactType::class,
+            FormType::class,
             $contact,
             [
                 'method' => 'DELETE',

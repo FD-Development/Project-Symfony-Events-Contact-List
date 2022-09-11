@@ -74,17 +74,6 @@ class EventType extends AbstractType
             ]
         );
         $builder->add(
-            'time_from',
-            TimeType::class,
-            [
-                'label' => 'label.time_from',
-                'required' => true,
-                'widget' => 'single_text',
-                'input_format' => 'H:i',
-            ]
-        );
-
-        $builder->add(
             'date_to',
             DateType::class,
             [
@@ -94,7 +83,16 @@ class EventType extends AbstractType
                 'input_format' => 'd-m-Y',
             ]
         );
-
+        $builder->add(
+            'time_from',
+            TimeType::class,
+            [
+                'label' => 'label.time_from',
+                'required' => true,
+                'widget' => 'single_text',
+                'input_format' => 'H:i',
+            ]
+        );
         $builder->add(
             'time_to',
             TimeType::class,
