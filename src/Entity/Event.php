@@ -131,7 +131,7 @@ class Event
     #[Assert\Callback]
     public function validate(ExecutionContextInterface $context): void
     {
-        if ($this->getDateFrom() == $this->getDateTo() && $this->getTimeFrom() > $this->getTimeTo()) {
+        if (date_format($this->getDateFrom(), 'Y-m-d') === date_format($this->getDateTo(), 'Y-m-d') && $this->getTimeFrom() > $this->getTimeTo()) {
             $context->buildViolation('message.form_event_time_violation')
                 ->atPath('time_to')
                 ->addViolation();
